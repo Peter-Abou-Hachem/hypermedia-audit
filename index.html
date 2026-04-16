@@ -399,66 +399,218 @@
 </div>
 </div>
 
-<!-- ══ SECTION 8: PHASED PLAN ══ -->
+<!-- ══ SECTION 8: TWO PATHS ══ -->
 <div class="sec">
-<div class="sec-label" style="color:var(--purple)">08 · Transition Plan</div>
-<h2>Three phases to full independence.</h2>
+<div class="sec-label" style="color:var(--purple)">08 · Two Paths Forward</div>
+<h2>Full replacement or phased control.<br><span style="color:var(--ink3)">Both lead to independence.</span></h2>
+<p style="color:var(--ink2);font-size:15px;margin-bottom:24px">There are two approaches to achieving technology independence. The right choice depends on the answers to the technical questions in Section 9 — particularly sensor access and data portability.</p>
 
-<div class="c" style="border-left:4px solid var(--red);margin-bottom:14px">
-  <span class="lbl" style="color:var(--red)">Phase 1 · Months 1-3 · Operational Independence</span>
-  <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Replace the core platform. No disruption to live campaigns or brand relationships.</p>
-  <div class="g g2">
-    <div>
-      <h3>Deliverables</h3>
-      <ul>
-        <li>Campaign management + audience-triggered ad serving</li>
-        <li>Audience intelligence (edge CV pipeline)</li>
-        <li>Hypermedia-branded dashboard + reporting</li>
-        <li>Device health monitoring across network</li>
-        <li>Historical data migration</li>
-        <li>2-4 week parallel run with existing platform</li>
-      </ul>
+<div class="g g2">
+  <div class="c" style="border-top:4px solid var(--blue)">
+    <span class="lbl" style="color:var(--blue)">Option A — Control Layer First</span>
+    <p style="color:var(--ink);font-size:16px;font-weight:600;margin-bottom:8px">Own the decisioning. Swap components over time.</p>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:14px">Build a thin orchestration layer that controls which ads run on which screens and when. This is where revenue flows — owning this layer means owning the margin. Keep existing sensor hardware and AiOO's edge software running initially. Replace components incrementally as the team validates each layer.</p>
+    <table style="margin-top:12px">
+      <tr><td>Investment</td><td style="text-align:right;font-weight:700;color:var(--blue)">$40-80K</td></tr>
+      <tr><td>Timeline</td><td style="text-align:right;font-weight:700">6 weeks</td></tr>
+      <tr><td>Delivers</td><td style="text-align:right">Ad decisioning + dashboard + reporting</td></tr>
+      <tr><td>Defers</td><td style="text-align:right">Edge CV rebuild, SSP, attribution</td></tr>
+      <tr><td>Risk level</td><td style="text-align:right;color:var(--green)">Low — minimal disruption to live ops</td></tr>
+    </table>
+    <div class="callout callout-blue" style="margin-top:12px">
+      <strong style="color:var(--blue)">Best if:</strong> Sensor hardware can continue running independently; immediate priority is margin control and dashboard ownership; lower upfront investment preferred.
     </div>
-    <div>
-      <h3>Team</h3>
-      <ul>
-        <li><strong>Product lead:</strong> Samer Sadek — architecture, edge AI, system design</li>
-        <li><strong>Engineering:</strong> Ala + 1-2 engineers — CV/ML pipeline, backend, frontend</li>
-        <li><strong>Project management:</strong> Peter Abou Hachem — coordination, delivery, stakeholder management</li>
-      </ul>
-      <div style="margin-top:16px">
-        <span class="lbl" style="color:var(--ink)">Investment</span>
-        <div class="big-sm">$150-250K</div>
-        <div class="sub">Milestone-based. 30% kickoff · 30% at test-store validation · 40% at full rollout.</div>
-      </div>
+  </div>
+
+  <div class="c" style="border-top:4px solid var(--purple)">
+    <span class="lbl" style="color:var(--purple)">Option B — Full Platform Replacement</span>
+    <p style="color:var(--ink);font-size:16px;font-weight:600;margin-bottom:8px">Replace the entire AiOO stack. Full ownership from day one.</p>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:14px">Build a complete replacement: campaign management, audience intelligence (edge CV), dashboards, device monitoring, and data migration. Clean break from AiOO. Hypermedia owns every layer of the stack. Parallel run with existing platform before cutover to ensure zero disruption.</p>
+    <table style="margin-top:12px">
+      <tr><td>Investment</td><td style="text-align:right;font-weight:700;color:var(--purple)">$150-250K</td></tr>
+      <tr><td>Timeline</td><td style="text-align:right;font-weight:700">3 months</td></tr>
+      <tr><td>Delivers</td><td style="text-align:right">Full platform: ad server + CV + dashboards + monitoring</td></tr>
+      <tr><td>Defers</td><td style="text-align:right">SSP (programmatic), attribution (POS matching)</td></tr>
+      <tr><td>Risk level</td><td style="text-align:right;color:var(--orange)">Medium — requires parallel run period</td></tr>
+    </table>
+    <div class="callout" style="background:rgba(177,151,252,0.06);border:1px solid rgba(177,151,252,0.15);margin-top:12px">
+      <strong style="color:var(--purple)">Best if:</strong> Edge software is AiOO-dependent (Layer 1 answer); clean break is the priority; Hypermedia wants to fully own the audience intelligence layer.
     </div>
   </div>
 </div>
 
+<div class="callout callout-blue" style="margin-top:14px">
+  <strong style="color:var(--blue)">Note:</strong> Both options lead to the same place — full technology independence. Option A gets there incrementally with less risk. Option B gets there in one move with more upfront investment. The answers from the technical team (especially questions #2 and #4) will determine which is the right fit.
+</div>
+</div>
+
+<!-- ══ SECTION 9: TRANSITION TIMELINE ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--green)">09 · What the Transition Looks Like</div>
+<h2>Week by week.<br><span style="color:var(--ink3)">No surprises. No gaps.</span></h2>
+
+<div class="c" style="margin-bottom:14px">
+  <span class="lbl" style="color:var(--green)">Week 1 — Technical Audit</span>
+  <div class="g g2" style="margin-top:10px">
+    <div>
+      <ul>
+        <li><strong>Day 1-2:</strong> On-site technical audit of one representative store — sensor hardware, device specs, data output format, network configuration</li>
+        <li><strong>Day 3:</strong> Scope confirmation based on findings. Option A or B determined.</li>
+        <li><strong>Day 4-5:</strong> Finalized statement of work with milestones and deliverables</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Outcome:</strong> Full clarity on what we're working with, what needs to be built, and exactly how long it takes</li>
+        <li><strong>Parallel:</strong> No disruption to current AiOO operations. Everything continues running as-is during audit.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="c" style="margin-bottom:14px">
+  <span class="lbl" style="color:var(--blue)">Weeks 2-4 — Build & Test</span>
+  <ul>
+    <li><strong>Week 2:</strong> First dashboard prototype connected to real Hypermedia data. Team reviews UX.</li>
+    <li><strong>Week 3:</strong> Campaign management core operational. First test campaigns running on 5-10 screens in one store.</li>
+    <li><strong>Week 4:</strong> Edge pipeline validated (if Option B). Device monitoring live across test cluster.</li>
+  </ul>
+</div>
+
+<div class="c" style="margin-bottom:14px">
+  <span class="lbl" style="color:var(--purple)">Weeks 5-8 — Expand & Validate</span>
+  <ul>
+    <li><strong>Week 5-6:</strong> Platform expanded to 50-100 screens. Real brand campaigns running in parallel with AiOO.</li>
+    <li><strong>Week 7-8:</strong> Full reporting validated. Brand reports match or exceed current quality. Ops team trained on new platform.</li>
+  </ul>
+</div>
+
+<div class="c" style="margin-bottom:14px">
+  <span class="lbl" style="color:var(--orange)">Weeks 9-12 — Cutover (Option B only)</span>
+  <ul>
+    <li><strong>Week 9-10:</strong> Parallel run — both platforms operating simultaneously across the full network. No single point of failure.</li>
+    <li><strong>Week 11-12:</strong> Cutover to new platform. AiOO services decommissioned. Hypermedia operates independently.</li>
+  </ul>
+</div>
+
+<div class="callout callout-green">
+  <strong style="color:var(--green)">Key principle:</strong> The current platform continues running untouched throughout the transition. No screen goes dark. No campaign is interrupted. No brand notices anything. The new platform is validated in parallel before any switch happens.
+</div>
+</div>
+
+<!-- ══ SECTION 10: BRAND CONTINUITY ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--green)">10 · Brand & Campaign Continuity</div>
+<h2>Nothing changes for your clients.</h2>
+
+<div class="c">
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-bottom:16px">Brands buy from Hypermedia because of the relationship, the screen network, and the retail locations — not because of the underlying technology vendor. A technology transition does not affect the demand side of the business.</p>
+  <div class="g g3">
+    <div class="c c-green">
+      <span class="lbl" style="color:var(--green)">Unchanged</span>
+      <ul>
+        <li>Brand and agency relationships</li>
+        <li>Screen locations and inventory</li>
+        <li>Campaign booking process</li>
+        <li>Direct-sold campaign delivery</li>
+        <li>Reporting format and cadence</li>
+      </ul>
+    </div>
+    <div class="c c-blue">
+      <span class="lbl" style="color:var(--blue)">Improved</span>
+      <ul>
+        <li>Dashboard speed and usability</li>
+        <li>Reporting granularity</li>
+        <li>Custom feature requests (no vendor dependency)</li>
+        <li>Data ownership and transparency</li>
+        <li>Integration flexibility</li>
+      </ul>
+    </div>
+    <div class="c c-orange">
+      <span class="lbl" style="color:var(--orange)">Temporary gap (Phase 1)</span>
+      <ul>
+        <li>Programmatic (SSP) — if currently live, brief pause during transition. Direct campaigns unaffected.</li>
+        <li>Body ID attribution — deferred to Phase 2. Modelled attribution available from day 1.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 11: TEAM ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--purple)">11 · The Team</div>
+<h2>Who builds this. What we bring.<br><span style="color:var(--ink3)">And what we'll bring in for.</span></h2>
+
+<div class="g g3">
+  <div class="c">
+    <span class="lbl">Product & Architecture</span>
+    <h3>Samer Sadek</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7">System architecture, AI/ML pipeline design, edge computing, product strategy. Built and shipped AI-powered platforms at production scale.</p>
+  </div>
+  <div class="c">
+    <span class="lbl">Project & Coordination</span>
+    <h3>Peter Abou Hachem</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7">Delivery management, stakeholder coordination, Hypermedia relationship. Head of Growth & Strategy at Hub71 — deep experience in tech ecosystem operations.</p>
+  </div>
+  <div class="c">
+    <span class="lbl">Engineering</span>
+    <h3>Ala + Build Team</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7">CV/ML pipeline development, backend engineering, frontend dashboards. Execution under Samer's architecture.</p>
+  </div>
+</div>
+
+<div class="g g2" style="margin-top:14px">
+  <div class="c c-green">
+    <span class="lbl" style="color:var(--green)">What We Bring</span>
+    <ul>
+      <li><strong>AI/ML engineering</strong> — computer vision, edge inference, model optimization</li>
+      <li><strong>Cloud platform architecture</strong> — scalable web applications, real-time dashboards, APIs</li>
+      <li><strong>Product design</strong> — UX for operational tools, campaign management interfaces</li>
+      <li><strong>Speed of execution</strong> — AI-assisted development, rapid prototyping, iterative delivery</li>
+    </ul>
+  </div>
+  <div class="c">
+    <span class="lbl">What We'll Bring In</span>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-bottom:10px">For domain-specific requirements outside our core expertise, we'll engage specialists as needed:</p>
+    <ul>
+      <li><strong>DOOH device fleet operations</strong> — large-scale firmware management, content delivery networks</li>
+      <li><strong>DSP certification</strong> — programmatic partnership process (The Trade Desk, DV360) for Phase 2+</li>
+      <li><strong>POS data integration</strong> — retailer system connectors for attribution in Phase 2+</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 12: PHASED ROADMAP ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--purple)">12 · Beyond Phase 1</div>
+<h2>The longer-term roadmap.</h2>
+
 <div class="c" style="border-left:4px solid var(--orange);margin-bottom:14px">
   <span class="lbl" style="color:var(--orange)">Phase 2 · Months 3-6 · Enhancement</span>
   <ul>
-    <li><strong>Ongoing platform operations:</strong> $8-15K/month — hosting, support, improvements, new features</li>
-    <li><strong>Audience segments product:</strong> package audience data for brands ($700-$1,500/brand/month revenue stream)</li>
-    <li><strong>Advanced reporting:</strong> dwell analysis, attention metrics, cross-store benchmarks</li>
-    <li><strong>POS integration preparation:</strong> connect to retailer transaction data for future attribution capability</li>
-    <li><strong>Extend to full network:</strong> deploy platform across remaining ~2,200 non-AiOO screens</li>
+    <li><strong>Ongoing platform operations:</strong> hosting, support, continuous improvements, new feature development</li>
+    <li><strong>Audience segments product:</strong> package audience data as a standalone product for brands ($700-$1,500/brand/month new revenue stream)</li>
+    <li><strong>Advanced reporting:</strong> dwell analysis, attention metrics, cross-store benchmarks, trend analysis</li>
+    <li><strong>POS integration:</strong> connect to retailer transaction data, laying groundwork for attribution</li>
+    <li><strong>Network expansion:</strong> deploy platform across remaining screens not currently AiOO-enabled</li>
   </ul>
 </div>
 
 <div class="c" style="border-left:4px solid var(--green);margin-bottom:14px">
   <span class="lbl" style="color:var(--green)">Phase 3 · Month 6+ · Market Leadership</span>
   <ul>
-    <li><strong>Programmatic capability:</strong> build or license SSP. Connect to demand-side platforms (TTD, DV360)</li>
-    <li><strong>Attribution:</strong> POS-matched campaign measurement. Modelled initially, deterministic as capability matures.</li>
-    <li><strong>Multi-network potential:</strong> platform architecture supports expanding to additional retail partners beyond current network</li>
+    <li><strong>Programmatic capability:</strong> build or license SSP, connect to DSPs (The Trade Desk, DV360), open new demand channels</li>
+    <li><strong>Attribution:</strong> POS-matched campaign measurement — proving ad-to-purchase impact with hard data</li>
+    <li><strong>Multi-network architecture:</strong> platform designed to support additional retail partners, expanding Hypermedia's position as a retail media leader in the region</li>
   </ul>
 </div>
 </div>
 
 <!-- ══ SECTION 9: INFORMATION NEEDED ══ -->
 <div class="sec">
-<div class="sec-label" style="color:var(--cyan)">09 · Information Required</div>
+<div class="sec-label" style="color:var(--cyan)">13 · Information Required</div>
 <h2>What we need from the technical team<br><span style="color:var(--ink3)">to finalize the scope.</span></h2>
 
 <div class="c">
