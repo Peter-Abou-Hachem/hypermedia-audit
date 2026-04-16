@@ -537,10 +537,179 @@
 </div>
 </div>
 
-<!-- ══ SECTION 11: PHASED ROADMAP ══ -->
+<!-- ══ SECTION 11: FULL TRANSITION MAP ══ -->
 <div class="sec">
-<div class="sec-label" style="color:var(--purple)">11 · Beyond Phase 1</div>
-<h2>The longer-term roadmap.</h2>
+<div class="sec-label" style="color:var(--purple)">11 · Capability Takeover Map</div>
+<h2>Every AiOO capability.<br><span style="color:var(--ink3)">Mapped by value, risk, and sequence.</span></h2>
+<p style="color:var(--ink2);font-size:15px;margin-bottom:32px">Not everything needs to be replaced at once. The highest-value, lowest-risk capabilities transfer first. High-risk components stay running until fully validated alternatives exist.</p>
+
+<!-- Visual grid: value vs risk -->
+<div class="c" style="padding:28px;margin-bottom:14px">
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:0">
+    <!-- Y axis label -->
+    <div style="writing-mode:vertical-lr;transform:rotate(180deg);text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:0.1em;padding-right:16px">BUSINESS VALUE →</div>
+    <div>
+      <!-- Grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:400px">
+        <!-- Top Left: High Value, Low Risk = DO FIRST -->
+        <div style="background:rgba(105,219,124,0.06);border:1px solid rgba(105,219,124,0.2);border-radius:12px;padding:20px">
+          <span class="lbl" style="color:var(--green)">High Value · Low Risk — Take Over First</span>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+            <div style="background:rgba(105,219,124,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(105,219,124,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Dashboard & Reporting</strong>
+                <span class="tag tag-green">PHASE 1</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">Where the ops team lives daily. First thing they notice. Highest perceived value for lowest technical complexity.</p>
+            </div>
+            <div style="background:rgba(105,219,124,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(105,219,124,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Campaign Management</strong>
+                <span class="tag tag-green">PHASE 1</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">Scheduling, rules, delivery control, proof-of-play. This is how Hypermedia runs the business. Must transfer cleanly.</p>
+            </div>
+            <div style="background:rgba(105,219,124,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(105,219,124,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Device Health Monitoring</strong>
+                <span class="tag tag-green">PHASE 1</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">Screen status, alerts, uptime tracking. Keeps the network reliable. Standard engineering.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Top Right: High Value, High Risk = PLAN CAREFULLY -->
+        <div style="background:rgba(255,169,77,0.06);border:1px solid rgba(255,169,77,0.2);border-radius:12px;padding:20px">
+          <span class="lbl" style="color:var(--orange)">High Value · High Risk — Plan Carefully</span>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+            <div style="background:rgba(255,169,77,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(255,169,77,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Audience Intelligence (Edge CV)</strong>
+                <span class="tag tag-orange">PHASE 1 or 2</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">Core differentiator. Makes screens "smart." High value — but risk depends entirely on whether Layer 1 software is locked to AiOO. Technical audit determines timing.</p>
+            </div>
+            <div style="background:rgba(255,169,77,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(255,169,77,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Programmatic SSP</strong>
+                <span class="tag tag-orange">PHASE 2-3</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">Revenue multiplier — but requires DSP partnerships and certifications that take 6-12 months. Cannot be rushed. Direct-sold campaigns continue without it.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Left: Lower Value, Low Risk = NICE TO HAVE -->
+        <div style="background:rgba(116,192,252,0.06);border:1px solid rgba(116,192,252,0.2);border-radius:12px;padding:20px">
+          <span class="lbl" style="color:var(--blue)">Useful · Low Risk — Add When Ready</span>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+            <div style="background:rgba(116,192,252,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(116,192,252,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Ops Workflow (Flow)</strong>
+                <span class="tag tag-blue">PHASE 2</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">Briefs, approvals, audit trails. Improves efficiency but the team can work manually in Phase 1.</p>
+            </div>
+            <div style="background:rgba(116,192,252,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(116,192,252,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Audience Segments Marketplace</strong>
+                <span class="tag tag-blue">PHASE 2</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">New revenue stream — selling audience data to brands as a standalone product. Valuable but not critical for operations.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Right: Lower Value, High Risk = DEFER -->
+        <div style="background:rgba(177,151,252,0.06);border:1px solid rgba(177,151,252,0.2);border-radius:12px;padding:20px">
+          <span class="lbl" style="color:var(--purple)">Advanced · Complex — Build When Foundation Is Solid</span>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+            <div style="background:rgba(177,151,252,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(177,151,252,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Attribution / Echo (Body ID + POS)</strong>
+                <span class="tag" style="background:rgba(177,151,252,0.1);color:var(--purple);border:1px solid rgba(177,151,252,0.2)">PHASE 3</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">R&D-level computer vision. Re-identifying shoppers from screen exposure to checkout. Impressive capability — but brands have accepted modelled attribution for decades. Not a blocker.</p>
+            </div>
+            <div style="background:rgba(177,151,252,0.1);border-radius:8px;padding:10px 14px;border:1px solid rgba(177,151,252,0.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:14px">Multi-Retailer Network</strong>
+                <span class="tag" style="background:rgba(177,151,252,0.1);color:var(--purple);border:1px solid rgba(177,151,252,0.2)">PHASE 3+</span>
+              </div>
+              <p style="font-size:12px;color:var(--ink2);margin-top:4px">AiOO's vision of connecting multiple retailers on one exchange. Strategic, but only matters after Hypermedia's own platform is fully operational and stable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- X axis label -->
+      <div style="text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);letter-spacing:0.1em;margin-top:12px">IMPLEMENTATION RISK →</div>
+    </div>
+  </div>
+</div>
+
+<!-- Visual timeline -->
+<h3 style="margin-top:32px;margin-bottom:16px">Sequenced Transition</h3>
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:8px">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0" >W1</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W2</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W3</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W4</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W5</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W6</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W7</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W8</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W9</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W10</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W11</div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);text-align:center;padding:4px 0">W12</div>
+</div>
+<!-- Dashboard bar -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:4px">
+  <div style="grid-column:1/7;background:var(--green);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Dashboard & Reporting</span>
+  </div>
+</div>
+<!-- Campaign mgmt bar -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:4px">
+  <div style="grid-column:2/9;background:var(--green);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Campaign Management</span>
+  </div>
+</div>
+<!-- Device monitoring bar -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:4px">
+  <div style="grid-column:3/8;background:var(--green);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Device Monitoring</span>
+  </div>
+</div>
+<!-- Edge CV bar -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:4px">
+  <div style="grid-column:3/11;background:var(--orange);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Audience Intelligence (if Layer 1 rebuild needed)</span>
+  </div>
+</div>
+<!-- Parallel run bar -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:4px">
+  <div style="grid-column:9/13;background:var(--blue);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Parallel Run & Cutover</span>
+  </div>
+</div>
+<!-- Data migration bar -->
+<div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px;margin-bottom:4px">
+  <div style="grid-column:1/4;background:var(--purple);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Tech Audit</span>
+  </div>
+  <div style="grid-column:7/11;background:var(--purple);border-radius:6px;padding:8px 12px">
+    <span style="font-size:11px;font-weight:600;color:#000">Data Migration</span>
+  </div>
+</div>
+
+<div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+  <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:3px;background:var(--green)"></div><span style="font-size:11px;color:var(--ink3)">Low risk — standard engineering</span></div>
+  <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:3px;background:var(--orange)"></div><span style="font-size:11px;color:var(--ink3)">Medium risk — depends on technical audit</span></div>
+  <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:3px;background:var(--blue)"></div><span style="font-size:11px;color:var(--ink3)">Validation phase — both systems running</span></div>
+  <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:3px;background:var(--purple)"></div><span style="font-size:11px;color:var(--ink3)">Discovery & migration</span></div>
+</div>
+
+<!-- Phase 2 and 3 -->
+<h3 style="margin-top:40px;margin-bottom:16px">After Independence (Phase 2-3)</h3>
 
 <div class="c" style="border-left:4px solid var(--orange);margin-bottom:14px">
   <span class="lbl" style="color:var(--orange)">Phase 2 · Months 3-6 · Enhancement</span>
