@@ -8,6 +8,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap');
   :root { --bg:#0a0a0c; --bg2:#111114; --bg3:#18181c; --ink:#ededee; --ink2:#b8b8bd; --ink3:#6d6d75; --line:rgba(255,255,255,0.08); --red:#ff6b6b; --orange:#ffa94d; --green:#69db7c; --blue:#74c0fc; --purple:#b197fc; --cyan:#66d9e8; }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
   .container{max-width:1100px;margin:0 auto;padding:60px 40px 100px}
   .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;font-weight:500}
@@ -17,6 +18,34 @@
   .lead{font-size:18px;color:var(--ink2);line-height:1.7;max-width:700px;margin-bottom:40px}
   .sec{margin-top:80px}
   .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding-bottom:12px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+
+  /* ── Animations ── */
+  .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1)}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+  .fade-in-delay-1{transition-delay:0.08s}
+  .fade-in-delay-2{transition-delay:0.16s}
+  .fade-in-delay-3{transition-delay:0.24s}
+  .fade-in-delay-4{transition-delay:0.32s}
+
+  /* ── Sticky nav ── */
+  .sticky-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(10,10,12,0.75);border-bottom:1px solid var(--line);padding:12px 0;transform:translateY(-100%);transition:transform 0.3s ease}
+  .sticky-nav.show{transform:translateY(0)}
+  .sticky-nav-inner{max-width:1100px;margin:0 auto;padding:0 40px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .sticky-nav-inner::-webkit-scrollbar{display:none}
+  .nav-dot{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);padding:4px 12px;border-radius:20px;white-space:nowrap;cursor:pointer;transition:all 0.2s;border:1px solid transparent;text-decoration:none}
+  .nav-dot:hover,.nav-dot.active{color:var(--ink);background:rgba(255,255,255,0.06);border-color:var(--line)}
+
+  /* ── Progress bar ── */
+  .progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--blue),var(--green));z-index:101;transition:width 0.15s ease;width:0}
+
+  /* ── Glow effects ── */
+  .glow-purple{box-shadow:0 0 80px rgba(177,151,252,0.08),0 0 160px rgba(177,151,252,0.04)}
+  .glow-green{box-shadow:0 0 80px rgba(105,219,124,0.08),0 0 160px rgba(105,219,124,0.04)}
+  .glow-red{box-shadow:0 0 80px rgba(255,107,107,0.08),0 0 160px rgba(255,107,107,0.04)}
+  .glow-orange{box-shadow:0 0 80px rgba(255,169,77,0.08),0 0 160px rgba(255,169,77,0.04)}
+
+  /* ── Number accent ── */
+  .sec-num{font-size:clamp(80px,12vw,140px);font-weight:800;letter-spacing:-0.06em;line-height:0.85;color:rgba(255,255,255,0.02);position:absolute;right:0;top:-20px;pointer-events:none;user-select:none}
   .g{display:grid;gap:14px;margin-bottom:14px}
   .g2{grid-template-columns:1fr 1fr}
   .g3{grid-template-columns:1fr 1fr 1fr}
@@ -62,22 +91,46 @@
 </style>
 </head>
 <body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Sticky nav -->
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-inner">
+    <a class="nav-dot" href="#hero">Overview</a>
+    <a class="nav-dot" href="#s-platform">Platform</a>
+    <a class="nav-dot" href="#s-dependency">Dependencies</a>
+    <a class="nav-dot" href="#s-claims">Claims</a>
+    <a class="nav-dot" href="#s-rebuild">Rebuild</a>
+    <a class="nav-dot" href="#s-risks">Risks</a>
+    <a class="nav-dot" href="#s-financial">Financial</a>
+    <a class="nav-dot" href="#s-paths">Paths</a>
+    <a class="nav-dot" href="#s-timeline">Timeline</a>
+    <a class="nav-dot" href="#s-brands">Brands</a>
+    <a class="nav-dot" href="#s-map">Takeover Map</a>
+    <a class="nav-dot" href="#s-questions">Questions</a>
+  </div>
+</nav>
+
 <div class="container">
 
 <!-- ══ HERO ══ -->
+<div id="hero" class="fade-in">
 <div class="eyebrow" style="color:var(--purple)">Prepared for Hypermedia Leadership</div>
 <h1>Technology<br>Independence<br><span style="color:var(--ink3)">Assessment</span></h1>
 <p class="lead">An independent review of Hypermedia's current technology partnership, platform dependencies, and a clear path to full ownership of the technology stack powering your retail media business.</p>
 <p style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);margin-bottom:8px">Prepared by: Peter Abou Hachem · Samer Sadek</p>
 <p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink3)">April 2026</p>
+</div>
 
-<!-- ══ SECTION 1: EXECUTIVE SUMMARY ══ -->
-<div class="sec">
+<!-- ══ SECTION 1 ══ -->
+<div class="sec fade-in" id="s-summary" style="position:relative"><div class="sec-num">01</div>
 <div class="sec-label" style="color:var(--purple)">01 · Executive Summary</div>
 <h2>The situation.</h2>
 
 <div class="g g3">
-  <div class="c c-blue">
+  <div class="c c-blue glow-purple fade-in">
     <span class="lbl" style="color:var(--blue)">Hypermedia's Network</span>
     <div class="big" style="color:var(--blue)">~4,000</div>
     <div class="sub">Total screens across UAE retail</div>
@@ -100,8 +153,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 2: WHAT AiOO PROVIDES ══ -->
-<div class="sec">
+<!-- ══ SECTION 2 ══ -->
+<div class="sec fade-in" id="s-platform" style="position:relative"><div class="sec-num">02</div>
 <div class="sec-label" style="color:var(--blue)">02 · Current AiOO Platform</div>
 <h2>What AiOO provides Hypermedia today.</h2>
 <p style="color:var(--ink2);font-size:15px;margin-bottom:24px">Based on AiOO's own documentation. Five integrated products.</p>
@@ -142,8 +195,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 3: DEPENDENCY MAP ══ -->
-<div class="sec">
+<!-- ══ SECTION 3 ══ -->
+<div class="sec fade-in" id="s-dependency" style="position:relative"><div class="sec-num">03</div>
 <div class="sec-label" style="color:var(--red)">03 · Dependency Analysis</div>
 <h2>What Hypermedia controls today<br><span style="color:var(--ink3)">vs. what AiOO controls.</span></h2>
 
@@ -169,14 +222,14 @@
 </div>
 </div>
 
-<!-- ══ SECTION 4: CLAIMS VALIDATION ══ -->
-<div class="sec">
+<!-- ══ SECTION 4 ══ -->
+<div class="sec fade-in" id="s-claims" style="position:relative"><div class="sec-num">04</div>
 <div class="sec-label" style="color:var(--orange)">04 · AiOO Claims — Independent Validation</div>
 <h2>What they say vs. what holds up.</h2>
 <p style="color:var(--ink2);font-size:15px;margin-bottom:24px">Every claim below is sourced from AiOO's own documents and evaluated independently.</p>
 
 <!-- Claim 1 -->
-<div class="verdict v-partial">
+<div class="verdict v-partial fade-in">
   <div>
     <h3 style="margin-bottom:4px">"No direct competitor has assembled the full stack"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO positions itself as the only platform combining sensors + ad server + SSP + attribution in one stack.</p>
@@ -189,7 +242,7 @@
 </div>
 
 <!-- Claim 2 -->
-<div class="verdict v-false">
+<div class="verdict v-false fade-in">
   <div>
     <h3 style="margin-bottom:4px">"$5-10M and 36-48 months to build in-house"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO's suggested cost for a retailer to replicate the platform independently.</p>
@@ -202,7 +255,7 @@
 </div>
 
 <!-- Claim 3 -->
-<div class="verdict v-unverified">
+<div class="verdict v-unverified fade-in">
   <div>
     <h3 style="margin-bottom:4px">"Patented real-time audience triggering"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO claims their audience-triggered ad delivery technology is patented.</p>
@@ -215,7 +268,7 @@
 </div>
 
 <!-- Claim 4 -->
-<div class="verdict v-true">
+<div class="verdict v-true fade-in">
   <div>
     <h3 style="margin-bottom:4px">"Privacy-by-design: no PII, no facial recognition, no cloud storage of raw video"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">All processing on-device. Only anonymized, aggregated analytics leave the device.</p>
@@ -228,7 +281,7 @@
 </div>
 
 <!-- Claim 5 -->
-<div class="verdict v-false">
+<div class="verdict v-false fade-in">
   <div>
     <h3 style="margin-bottom:4px">"3.2x attention lift"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO claims audience-targeted campaigns achieve 3.2x more attention than standard loop-based DOOH.</p>
@@ -241,7 +294,7 @@
 </div>
 
 <!-- Claim 6 -->
-<div class="verdict v-partial">
+<div class="verdict v-partial fade-in">
   <div>
     <h3 style="margin-bottom:4px">"$45/screen/month is fair vs. market benchmarks"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO positions the fee as "monetization infrastructure, not screen scheduling software."</p>
@@ -260,7 +313,7 @@
 </div>
 
 <!-- Claim 7 -->
-<div class="verdict v-partial">
+<div class="verdict v-partial fade-in">
   <div>
     <h3 style="margin-bottom:4px">"Closed-loop POS attribution — deterministic, not modelled"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">Echo claims to match audience exposure directly to point-of-sale transactions.</p>
@@ -273,7 +326,7 @@
 </div>
 
 <!-- Claim 8 -->
-<div class="verdict v-partial">
+<div class="verdict v-partial fade-in">
   <div>
     <h3 style="margin-bottom:4px">"Player agnostic — works with any hardware"</h3>
     <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO claims modular architecture that integrates with existing CMS and hardware ecosystems.</p>
@@ -286,8 +339,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 5: WHAT A REBUILD LOOKS LIKE ══ -->
-<div class="sec">
+<!-- ══ SECTION 5 ══ -->
+<div class="sec fade-in" id="s-rebuild" style="position:relative"><div class="sec-num">05</div>
 <div class="sec-label" style="color:var(--green)">05 · Rebuild Assessment</div>
 <h2>What can be replicated.<br><span style="color:var(--ink3)">Prioritized by operational need.</span></h2>
 
@@ -329,8 +382,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 6: RISKS ══ -->
-<div class="sec">
+<!-- ══ SECTION 6 ══ -->
+<div class="sec fade-in" id="s-risks" style="position:relative"><div class="sec-num">06</div>
 <div class="sec-label" style="color:var(--red)">06 · Risk Assessment</div>
 <h2>What needs to be confirmed<br><span style="color:var(--ink3)">before committing to the rebuild.</span></h2>
 
@@ -362,8 +415,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 7: FINANCIAL COMPARISON ══ -->
-<div class="sec">
+<!-- ══ SECTION 7 ══ -->
+<div class="sec fade-in" id="s-financial" style="position:relative"><div class="sec-num">07</div>
 <div class="sec-label" style="color:var(--green)">07 · Financial Comparison</div>
 <h2>The economics of independence.</h2>
 
@@ -399,8 +452,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 8: TWO PATHS ══ -->
-<div class="sec">
+<!-- ══ SECTION 8 ══ -->
+<div class="sec fade-in" id="s-paths" style="position:relative"><div class="sec-num">08</div>
 <div class="sec-label" style="color:var(--purple)">08 · Two Paths Forward</div>
 <h2>Full replacement or phased control.<br><span style="color:var(--ink3)">Both lead to independence.</span></h2>
 <p style="color:var(--ink2);font-size:15px;margin-bottom:24px">There are two approaches to achieving technology independence. The right choice depends on the answers to the technical questions in Section 9 — particularly sensor access and data portability.</p>
@@ -444,8 +497,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 9: TRANSITION TIMELINE ══ -->
-<div class="sec">
+<!-- ══ SECTION 9 ══ -->
+<div class="sec fade-in" id="s-timeline" style="position:relative"><div class="sec-num">09</div>
 <div class="sec-label" style="color:var(--green)">09 · What the Transition Looks Like</div>
 <h2>Week by week.<br><span style="color:var(--ink3)">No surprises. No gaps.</span></h2>
 
@@ -498,8 +551,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 10: BRAND CONTINUITY ══ -->
-<div class="sec">
+<!-- ══ SECTION 10 ══ -->
+<div class="sec fade-in" id="s-brands" style="position:relative"><div class="sec-num">10</div>
 <div class="sec-label" style="color:var(--green)">10 · Brand & Campaign Continuity</div>
 <h2>Nothing changes for your clients.</h2>
 
@@ -537,8 +590,8 @@
 </div>
 </div>
 
-<!-- ══ SECTION 11: FULL TRANSITION MAP ══ -->
-<div class="sec">
+<!-- ══ SECTION 11 ══ -->
+<div class="sec fade-in" id="s-map" style="position:relative"><div class="sec-num">11</div>
 <div class="sec-label" style="color:var(--purple)">11 · Capability Takeover Map</div>
 <h2>Every AiOO capability.<br><span style="color:var(--ink3)">Mapped by value, risk, and sequence.</span></h2>
 <p style="color:var(--ink2);font-size:15px;margin-bottom:32px">Not everything needs to be replaced at once. The highest-value, lowest-risk capabilities transfer first. High-risk components stay running until fully validated alternatives exist.</p>
@@ -733,7 +786,7 @@
 </div>
 
 <!-- ══ SECTION 9: INFORMATION NEEDED ══ -->
-<div class="sec">
+<div class="sec fade-in" id="s-questions" style="position:relative"><div class="sec-num">12</div>
 <div class="sec-label" style="color:var(--cyan)">12 · Information Required</div>
 <h2>What we need from the technical team<br><span style="color:var(--ink3)">to finalize the scope.</span></h2>
 
@@ -784,5 +837,36 @@
 </div>
 
 </div>
+
+<script>
+// ── Scroll fade-in ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── Progress bar ──
+const progressBar = document.getElementById('progressBar');
+const updateProgress = () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+};
+
+// ── Sticky nav ──
+const stickyNav = document.getElementById('stickyNav');
+const navDots = document.querySelectorAll('.nav-dot');
+const sections = document.querySelectorAll('.sec[id]');
+const updateNav = () => {
+  const scrollY = window.scrollY;
+  stickyNav.classList.toggle('show', scrollY > 400);
+  let current = '';
+  sections.forEach(sec => { if (scrollY >= sec.offsetTop - 200) current = sec.id; });
+  navDots.forEach(dot => dot.classList.toggle('active', dot.getAttribute('href') === '#' + current));
+};
+
+window.addEventListener('scroll', () => { updateProgress(); updateNav(); }, { passive: true });
+updateProgress();
+</script>
 </body>
 </html>
