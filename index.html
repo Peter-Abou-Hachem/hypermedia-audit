@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hypermedia — Technology Independence Assessment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+  :root { --bg:#0a0a0c; --bg2:#111114; --bg3:#18181c; --ink:#ededee; --ink2:#b8b8bd; --ink3:#6d6d75; --line:rgba(255,255,255,0.08); --red:#ff6b6b; --orange:#ffa94d; --green:#69db7c; --blue:#74c0fc; --purple:#b197fc; --cyan:#66d9e8; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter Tight',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+  .container{max-width:1100px;margin:0 auto;padding:60px 40px 100px}
+  .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;font-weight:500}
+  h1{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin-bottom:20px}
+  h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px}
+  h3{font-size:18px;font-weight:600;margin-bottom:8px}
+  .lead{font-size:18px;color:var(--ink2);line-height:1.7;max-width:700px;margin-bottom:40px}
+  .sec{margin-top:80px}
+  .sec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding-bottom:12px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+  .g{display:grid;gap:14px;margin-bottom:14px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr 1fr}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g5{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:800px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
+  .c{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .c-red{border-color:rgba(255,107,107,0.2);background:rgba(255,107,107,0.03)}
+  .c-orange{border-color:rgba(255,169,77,0.2);background:rgba(255,169,77,0.03)}
+  .c-green{border-color:rgba(105,219,124,0.2);background:rgba(105,219,124,0.03)}
+  .c-blue{border-color:rgba(116,192,252,0.2);background:rgba(116,192,252,0.03)}
+  .c-purple{border-color:rgba(177,151,252,0.2);background:rgba(177,151,252,0.03)}
+  .lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;display:block}
+  .big{font-size:36px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+  .big-sm{font-size:24px}
+  .sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink3);margin-top:6px;line-height:1.6}
+  table{width:100%;border-collapse:collapse}
+  th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:13px;color:var(--ink2)}
+  td:first-child{color:var(--ink)}
+  .pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--orange)}.info{color:var(--blue)}.hi{color:var(--purple)}
+  .tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;padding:3px 10px;border-radius:6px;margin-right:6px}
+  .tag-red{background:rgba(255,107,107,0.1);color:var(--red);border:1px solid rgba(255,107,107,0.2)}
+  .tag-orange{background:rgba(255,169,77,0.1);color:var(--orange);border:1px solid rgba(255,169,77,0.2)}
+  .tag-green{background:rgba(105,219,124,0.1);color:var(--green);border:1px solid rgba(105,219,124,0.2)}
+  .tag-blue{background:rgba(116,192,252,0.1);color:var(--blue);border:1px solid rgba(116,192,252,0.2)}
+  .callout{border-radius:12px;padding:16px 20px;margin:16px 0}
+  .callout-red{background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.15)}
+  .callout-green{background:rgba(105,219,124,0.06);border:1px solid rgba(105,219,124,0.15)}
+  .callout-orange{background:rgba(255,169,77,0.06);border:1px solid rgba(255,169,77,0.15)}
+  .callout-blue{background:rgba(116,192,252,0.06);border:1px solid rgba(116,192,252,0.15)}
+  .verdict{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 16px;border-radius:10px;margin-bottom:8px}
+  .v-true{background:rgba(105,219,124,0.06);border:1px solid rgba(105,219,124,0.12)}
+  .v-partial{background:rgba(255,169,77,0.06);border:1px solid rgba(255,169,77,0.12)}
+  .v-false{background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.12)}
+  .v-unverified{background:rgba(177,151,252,0.06);border:1px solid rgba(177,151,252,0.12)}
+  .footer{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);text-align:center;margin-top:80px}
+  ul{list-style:none;padding:0}
+  li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:13px;color:var(--ink2);line-height:1.6}
+  li:last-child{border:none}
+  li strong{color:var(--ink)}
+  .source{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);font-style:italic;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ══ HERO ══ -->
+<div class="eyebrow" style="color:var(--purple)">Prepared for Hypermedia Leadership</div>
+<h1>Technology<br>Independence<br><span style="color:var(--ink3)">Assessment</span></h1>
+<p class="lead">An independent review of Hypermedia's current technology partnership, platform dependencies, and a clear path to full ownership of the technology stack powering your retail media business.</p>
+<p style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink3);margin-bottom:8px">Prepared by: Peter Abou Hachem · Samer Sadek</p>
+<p style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink3)">April 2026</p>
+
+<!-- ══ SECTION 1: EXECUTIVE SUMMARY ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--purple)">01 · Executive Summary</div>
+<h2>The situation.</h2>
+
+<div class="g g3">
+  <div class="c c-blue">
+    <span class="lbl" style="color:var(--blue)">Hypermedia's Network</span>
+    <div class="big" style="color:var(--blue)">~4,000</div>
+    <div class="sub">Total screens across UAE retail</div>
+  </div>
+  <div class="c c-purple">
+    <span class="lbl" style="color:var(--purple)">AiOO-Enabled</span>
+    <div class="big" style="color:var(--purple)">TBC</div>
+    <div class="sub">Screens with sensors + full AiOO stack<br><em>AiOO's GTM deck references 1,800</em></div>
+  </div>
+  <div class="c">
+    <span class="lbl" style="color:var(--green)">Annual Revenue</span>
+    <div class="big" style="color:var(--green)">$3M+</div>
+    <div class="sub">From AiOO-enabled screens<br><span class="source">Source: AiOO GTM Strategy, "Target Markets — Phase 1"</span></div>
+  </div>
+</div>
+
+<div class="c" style="margin-top:14px">
+  <p style="font-size:15px;color:var(--ink);line-height:1.8">Hypermedia operates one of the largest in-store retail media networks in the UAE. The technology powering the smart screens — audience detection, campaign delivery, analytics, and reporting — is currently provided by AiOO Technologies. This assessment examines <strong>what AiOO provides, how dependent Hypermedia is on that technology, whether it can be replicated, and at what cost.</strong></p>
+  <p style="font-size:15px;color:var(--ink);line-height:1.8;margin-top:12px">The goal: <strong>full technology independence</strong> — Hypermedia owns its own platform, its own data, and its own roadmap. No vendor lock-in. No revenue share to a third party. No single point of failure.</p>
+</div>
+</div>
+
+<!-- ══ SECTION 2: WHAT AiOO PROVIDES ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--blue)">02 · Current AiOO Platform</div>
+<h2>What AiOO provides Hypermedia today.</h2>
+<p style="color:var(--ink2);font-size:15px;margin-bottom:24px">Based on AiOO's own documentation. Five integrated products.</p>
+
+<div class="g g5">
+  <div class="c" style="border-top:3px solid var(--blue)"><span class="lbl" style="color:var(--blue)">AudienceEye</span><div class="big-sm" style="color:var(--blue)">Pulse</div><div class="sub">Edge CV: detect, track, count, demographics, dwell, attention. On-device processing. No PII.</div><div style="margin-top:10px"><span class="tag tag-blue">$40-60/screen/mo</span></div><div class="source">Source: AiOO Short Intro, "AiOO Pulse" slide</div></div>
+  <div class="c" style="border-top:3px solid var(--purple)"><span class="lbl" style="color:var(--purple)">Campaign IQ</span><div class="big-sm" style="color:var(--purple)">Connect</div><div class="sub">Ad server: campaign setup, scheduling, audience-triggered delivery, proof-of-play, reporting.</div><div style="margin-top:10px"><span class="tag tag-blue">$35-100/screen/mo</span></div><div class="source">Source: AiOO Short Intro, "AiOO Connect" slide</div></div>
+  <div class="c" style="border-top:3px solid var(--cyan)"><span class="lbl" style="color:var(--cyan)">AiOO X</span><div class="big-sm" style="color:var(--cyan)">SSP</div><div class="sub">Programmatic: guaranteed deals, private marketplace, open auction. DSP integrations.</div><div style="margin-top:10px"><span class="tag tag-orange">8-20% take rate</span></div><div class="source">Source: AiOO GTM Strategy, "Revenue Architecture"</div></div>
+  <div class="c" style="border-top:3px solid var(--orange)"><span class="lbl" style="color:var(--orange)">Flow</span><div class="big-sm" style="color:var(--orange)">OMS</div><div class="sub">Ops workflows: briefs, approvals, audit trails, status tracking.</div><div style="margin-top:10px"><span class="tag tag-green">Included</span></div></div>
+  <div class="c" style="border-top:3px solid var(--green)"><span class="lbl" style="color:var(--green)">Raidar</span><div class="big-sm" style="color:var(--green)">NOC</div><div class="sub">Network health: device status, anomaly detection, remote updates.</div><div style="margin-top:10px"><span class="tag tag-green">Included</span></div></div>
+</div>
+
+<div class="c c-orange" style="margin-top:14px;border-top:3px solid var(--orange)">
+  <span class="lbl" style="color:var(--orange)">+ Echo (Attribution)</span>
+  <p style="color:var(--ink2);font-size:14px;line-height:1.7">Body ID re-identification (not facial recognition — body shape + clothing patterns). POS matching. SKU-level sales uplift measurement. Full-funnel ROAS reporting.</p>
+  <div style="margin-top:8px"><span class="tag tag-blue">$50-70/screen/mo</span></div>
+  <div class="source">Source: AiOO Short Intro, "AiOO Echo" slide</div>
+</div>
+
+<!-- Two layers -->
+<h3 style="margin-top:32px">Architecture: Two Software Layers</h3>
+<p style="color:var(--ink2);font-size:14px;margin-bottom:16px">Understanding which layer AiOO controls is critical for planning the transition.</p>
+<div class="g g2">
+  <div class="c c-red">
+    <span class="lbl" style="color:var(--red)">Layer 1 — On the Device (Edge)</span>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7">Software running ON the sensor/player hardware. Captures raw sensor data, processes it into structured audience data (age, gender, dwell time, attention level).</p>
+    <div class="callout callout-red" style="margin-top:10px">
+      <strong style="color:var(--red)">Key question:</strong> Does this software come pre-installed with the hardware, or does AiOO install it? This determines whether the devices can function independently.
+    </div>
+  </div>
+  <div class="c c-blue">
+    <span class="lbl" style="color:var(--blue)">Layer 2 — Cloud Platform</span>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7">Everything that receives the structured data and runs the business: campaign management, programmatic exchange, ops workflows, device monitoring, attribution, dashboards and reporting.</p>
+    <div class="callout callout-blue" style="margin-top:10px">
+      <strong style="color:var(--blue)">This is AiOO's platform.</strong> Campaign IQ, AiOO X, Flow, Raidar, Echo, and the Hypermedia-branded dashboard are all hosted and operated by AiOO.
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 3: DEPENDENCY MAP ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--red)">03 · Dependency Analysis</div>
+<h2>What Hypermedia controls today<br><span style="color:var(--ink3)">vs. what AiOO controls.</span></h2>
+
+<div class="c">
+  <table>
+    <tr><th>Layer</th><th>AiOO Controls</th><th>Hypermedia Controls</th><th>Impact if Partnership Ends</th></tr>
+    <tr><td><strong>Physical screens</strong></td><td>—</td><td class="pos">Owned by Hypermedia</td><td class="pos">No impact</td></tr>
+    <tr><td><strong>Network / connectivity</strong></td><td>—</td><td class="pos">Managed by HM team</td><td class="pos">No impact</td></tr>
+    <tr><td><strong>Sensor hardware</strong></td><td>Potentially edge software</td><td>Physical devices installed</td><td class="warn">Depends on Layer 1 answer</td></tr>
+    <tr><td><strong>Audience intelligence</strong></td><td class="neg">AudienceEye software</td><td>—</td><td class="neg">All audience data stops</td></tr>
+    <tr><td><strong>Campaign management</strong></td><td class="neg">Campaign IQ platform</td><td>—</td><td class="neg">Cannot schedule or manage campaigns</td></tr>
+    <tr><td><strong>Programmatic sales</strong></td><td class="neg">AiOO X SSP</td><td>Direct brand relationships</td><td class="warn">Programmatic revenue stream lost</td></tr>
+    <tr><td><strong>Attribution & measurement</strong></td><td class="neg">Echo platform</td><td>POS data from retailers</td><td class="warn">Cannot prove campaign ROI to brands</td></tr>
+    <tr><td><strong>Operations workflow</strong></td><td class="neg">Flow OMS</td><td>HM ops team (daily management)</td><td class="warn">Manual workarounds needed</td></tr>
+    <tr><td><strong>Device monitoring</strong></td><td class="neg">Raidar NOC</td><td>—</td><td class="warn">No remote visibility into device health</td></tr>
+    <tr><td><strong>Dashboard & reporting</strong></td><td class="neg">HM-branded frontend (hosted by AiOO)</td><td>—</td><td class="neg">No visibility into any operations</td></tr>
+    <tr><td><strong>Historical data</strong></td><td class="neg">Likely on AiOO cloud</td><td>To be confirmed</td><td class="neg">Potentially all campaign + audience history lost</td></tr>
+  </table>
+</div>
+
+<div class="callout callout-red" style="margin-top:14px">
+  <strong style="color:var(--red)">Summary:</strong> If AiOO's platform is discontinued, Hypermedia's smart screens revert to static display loops. Audience targeting, campaign management, proof-of-play reporting, programmatic revenue, and all analytics capabilities are lost. The team retains physical infrastructure and direct brand relationships — but the technology that makes those screens a premium media product disappears.
+</div>
+</div>
+
+<!-- ══ SECTION 4: CLAIMS VALIDATION ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--orange)">04 · AiOO Claims — Independent Validation</div>
+<h2>What they say vs. what holds up.</h2>
+<p style="color:var(--ink2);font-size:15px;margin-bottom:24px">Every claim below is sourced from AiOO's own documents and evaluated independently.</p>
+
+<!-- Claim 1 -->
+<div class="verdict v-partial">
+  <div>
+    <h3 style="margin-bottom:4px">"No direct competitor has assembled the full stack"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO positions itself as the only platform combining sensors + ad server + SSP + attribution in one stack.</p>
+    <div class="source">Source: AiOO GTM Strategy, "Competitive Positioning" slide</div>
+  </div>
+  <span class="tag tag-orange">PARTIALLY TRUE</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> Individual components all have established competitors. <strong>Advertima</strong> and <strong>Quividi</strong> offer audience measurement. <strong>Broadsign</strong>, <strong>Vistar Media</strong>, and <strong>Hivestack</strong> offer DOOH ad serving and SSP capabilities. What is genuinely uncommon is the full vertical integration — sensor to attribution in one platform from one vendor. However, "no competitor" overstates the case. The correct framing is: no single competitor bundles all five layers, but each layer has mature alternatives that can be integrated.</p>
+</div>
+
+<!-- Claim 2 -->
+<div class="verdict v-false">
+  <div>
+    <h3 style="margin-bottom:4px">"$5-10M and 36-48 months to build in-house"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO's suggested cost for a retailer to replicate the platform independently.</p>
+    <div class="source">Source: AiOO GTM Strategy, "Competitive Positioning" slide, footer note</div>
+  </div>
+  <span class="tag tag-red">INFLATED</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> This figure assumes building the FULL stack from scratch: custom sensors, ad server, SSP with DSP integrations, attribution with Body ID, multi-retailer network architecture, and a multi-year go-to-market. For Hypermedia's operational needs — campaign management, audience intelligence, dashboards, and device monitoring — the realistic rebuild cost is <strong>$150-250K over 3-4 months</strong>. Advanced features (SSP, attribution) can be added incrementally. The $5-10M figure is designed to discourage the exact conversation we are having.</p>
+</div>
+
+<!-- Claim 3 -->
+<div class="verdict v-unverified">
+  <div>
+    <h3 style="margin-bottom:4px">"Patented real-time audience triggering"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO claims their audience-triggered ad delivery technology is patented.</p>
+    <div class="source">Source: AiOO GTM Strategy, "Competitive Positioning" slide — "YES (patented)"</div>
+  </div>
+  <span class="tag" style="background:rgba(177,151,252,0.1);color:var(--purple);border:1px solid rgba(177,151,252,0.2)">UNVERIFIED</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> No patent number is provided in any of the seven documents reviewed. "Patented" may refer to a patent application (pending), not a granted patent. Real-time audience-triggered content delivery is a well-established technique in the DOOH industry (Quividi, Advertima, and others have offered variations since 2018+). Recommendation: <strong>request the patent number and verify scope before this claim influences any technical or legal decisions.</strong></p>
+</div>
+
+<!-- Claim 4 -->
+<div class="verdict v-true">
+  <div>
+    <h3 style="margin-bottom:4px">"Privacy-by-design: no PII, no facial recognition, no cloud storage of raw video"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">All processing on-device. Only anonymized, aggregated analytics leave the device.</p>
+    <div class="source">Source: AiOO Short Intro, "AudienceEye" + "Privacy & Compliance" slides</div>
+  </div>
+  <span class="tag tag-green">CREDIBLE</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> Edge processing with no cloud video transmission is a legitimate and increasingly standard architecture pattern. This is how Advertima, Quividi, and other mature competitors also operate. The claim is credible and should be maintained in any replacement platform. <strong>However:</strong> Echo's "Body ID" re-identification (tracking people across a store by body shape and clothing) is a gray area — while technically not facial recognition, it does create a re-identifiable signature that regulators may scrutinize under GDPR's definition of personal data.</p>
+</div>
+
+<!-- Claim 5 -->
+<div class="verdict v-false">
+  <div>
+    <h3 style="margin-bottom:4px">"3.2x attention lift"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO claims audience-targeted campaigns achieve 3.2x more attention than standard loop-based DOOH.</p>
+    <div class="source">Source: AiOO Short Intro, "From Static Screens to Intelligent Media" slide</div>
+  </div>
+  <span class="tag tag-red">UNSUBSTANTIATED</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> No methodology, sample size, control group definition, or measurement period is provided. "Attention lift" is not a standardized industry metric. Competing claims in DOOH typically range from 1.5-4x depending on measurement methodology. Without transparent methodology, this number cannot be validated and should not be used in brand-facing reporting without independent verification.</p>
+</div>
+
+<!-- Claim 6 -->
+<div class="verdict v-partial">
+  <div>
+    <h3 style="margin-bottom:4px">"$45/screen/month is fair vs. market benchmarks"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO positions the fee as "monetization infrastructure, not screen scheduling software."</p>
+    <div class="source">Source: 2026 AiOO Commercial Terms document</div>
+  </div>
+  <span class="tag tag-orange">CONTEXT-DEPENDENT</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> AiOO's own benchmark table shows basic CMS at $10-20/screen/month and enterprise at $30-50+. The $45 fee is within range for a full ad server + audience intelligence stack. However, this is the introductory rate — their full stack pricing (Pulse + Connect + Echo) reaches <strong>$160-230/screen/month</strong>. At scale:</p>
+  <table style="margin-top:10px">
+    <tr><td>At $45 × TBC screens</td><td class="warn" style="text-align:right">$81K-$180K/month</td><td class="warn" style="text-align:right">$972K-$2.16M/year</td></tr>
+    <tr><td>Full stack pricing</td><td class="neg" style="text-align:right">$288K-$920K/month</td><td class="neg" style="text-align:right">$3.5-$11M/year</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7;margin-top:10px">The COFREE model (alternative) results in AiOO taking ~60% effective take-rate on Hypermedia's screen revenue. On $3M/year revenue, that is <strong>$1.8M/year going to AiOO.</strong></p>
+  <div class="source">Source: AiOO GTM Strategy, "Revenue Architecture" + "COFREE Model" slides</div>
+</div>
+
+<!-- Claim 7 -->
+<div class="verdict v-partial">
+  <div>
+    <h3 style="margin-bottom:4px">"Closed-loop POS attribution — deterministic, not modelled"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">Echo claims to match audience exposure directly to point-of-sale transactions.</p>
+    <div class="source">Source: AiOO GTM Strategy, "Competitive Positioning" + AiOO Short Intro, "AiOO Echo" slide</div>
+  </div>
+  <span class="tag tag-orange">TECHNICALLY POSSIBLE BUT COMPLEX</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> Body ID re-identification (tracking a person from screen exposure to checkout) is real computer vision research being deployed by a small number of companies. However: (a) accuracy degrades significantly in crowded retail environments, (b) matching requires sensor coverage at both screen AND checkout, (c) the "deterministic" claim implies 1:1 matching which is aspirational — most implementations are probabilistic. This is the most technically advanced and hardest-to-replicate component of AiOO's stack. It is also the feature Hypermedia can most easily live without in the short term — brands have accepted modelled attribution for decades.</p>
+</div>
+
+<!-- Claim 8 -->
+<div class="verdict v-partial">
+  <div>
+    <h3 style="margin-bottom:4px">"Player agnostic — works with any hardware"</h3>
+    <p style="font-size:13px;color:var(--ink2);line-height:1.6">AiOO claims modular architecture that integrates with existing CMS and hardware ecosystems.</p>
+    <div class="source">Source: AiOO Short Intro, "Integrations" slide</div>
+  </div>
+  <span class="tag tag-orange">PARTIALLY TRUE</span>
+</div>
+<div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
+  <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> Their documentation specifies "Android-based and edge-player friendly architecture." This suggests compatibility with standard Android media players, which is good. However, the AudienceEye edge processing requires specific compute capability (GPU for CV inference) that not all standard players have. The claim is true for the cloud platform (Campaign IQ, Flow, Raidar) but likely requires specific hardware for the audience intelligence layer. <strong>This is positive for a rebuild — if the players are standard Android devices, a replacement platform can be deployed on the same hardware.</strong></p>
+</div>
+</div>
+
+<!-- ══ SECTION 5: WHAT A REBUILD LOOKS LIKE ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--green)">05 · Rebuild Assessment</div>
+<h2>What can be replicated.<br><span style="color:var(--ink3)">Prioritized by operational need.</span></h2>
+
+<div class="c" style="margin-bottom:14px">
+  <table>
+    <tr><th>Component</th><th>Replicable?</th><th>Complexity</th><th>Timeline</th><th>Priority</th></tr>
+    <tr><td><strong>Campaign management + ad serving</strong></td><td class="pos">Yes — established engineering patterns</td><td class="warn">Medium</td><td>6-8 weeks</td><td><span class="tag tag-red">Critical — Day 1</span></td></tr>
+    <tr><td><strong>Audience intelligence (edge CV)</strong></td><td class="pos">Yes — open-source CV models available</td><td class="neg">Hard</td><td>6-10 weeks</td><td><span class="tag tag-red">Critical — depends on device answer</span></td></tr>
+    <tr><td><strong>Dashboards + brand reporting</strong></td><td class="pos">Yes — standard web application</td><td class="pos">Straightforward</td><td>3-4 weeks</td><td><span class="tag tag-red">Critical — ops team needs this daily</span></td></tr>
+    <tr><td><strong>Device monitoring</strong></td><td class="pos">Yes — standard device health APIs</td><td class="warn">Medium</td><td>3-4 weeks</td><td><span class="tag tag-orange">Important</span></td></tr>
+    <tr><td><strong>Ops workflow (briefs, approvals)</strong></td><td class="pos">Yes — standard CRUD application</td><td class="pos">Straightforward</td><td>2-3 weeks</td><td><span class="tag tag-blue">Phase 2</span></td></tr>
+    <tr><td><strong>SSP / Programmatic</strong></td><td class="warn">Partial — requires DSP partnerships</td><td class="neg">Complex</td><td>6+ months</td><td><span class="tag tag-blue">Phase 3</span></td></tr>
+    <tr><td><strong>Attribution (Body ID + POS)</strong></td><td class="warn">Partial — R&D-level computer vision</td><td class="neg">Complex</td><td>6+ months</td><td><span class="tag tag-blue">Phase 3</span></td></tr>
+  </table>
+</div>
+
+<div class="g g2">
+  <div class="c c-green">
+    <span class="lbl" style="color:var(--green)">Phase 1 Deliverables (3 months)</span>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Everything Hypermedia needs to operate independently. No loss of capability that affects live campaigns or brand relationships.</p>
+    <ul>
+      <li><strong>Campaign management platform</strong> — setup, scheduling, audience-based rules, delivery control, proof-of-play logs</li>
+      <li><strong>Audience intelligence</strong> — real-time audience detection, demographics, dwell time, attention metrics</li>
+      <li><strong>Hypermedia dashboard</strong> — per-store analytics, campaign performance, brand-ready exportable reports</li>
+      <li><strong>Device monitoring</strong> — network-wide device health, online/offline status, alerts</li>
+      <li><strong>Data migration</strong> — historical campaign and audience data transferred to Hypermedia-owned infrastructure</li>
+    </ul>
+  </div>
+  <div class="c">
+    <span class="lbl" style="color:var(--ink3)">Deferred to Phase 2-3</span>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Features that add value but are not required for operational continuity.</p>
+    <ul>
+      <li><strong>Programmatic SSP</strong> — Hypermedia runs direct-sold campaigns in Phase 1. Programmatic is additive revenue, not survival.</li>
+      <li><strong>Attribution (Echo equivalent)</strong> — Body ID re-identification + POS matching. Brands have accepted modelled attribution for decades. Not urgent.</li>
+      <li><strong>Audience segment marketplace</strong> — Selling audience data as a standalone product to brands. High-value, but Phase 2+.</li>
+      <li><strong>Advanced workflow automation</strong> — Enterprise-grade brief/approval chains. Manual process is fine initially.</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 6: RISKS ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--red)">06 · Risk Assessment</div>
+<h2>What needs to be confirmed<br><span style="color:var(--ink3)">before committing to the rebuild.</span></h2>
+
+<div class="g g2">
+  <div class="c c-red">
+    <span class="lbl" style="color:var(--red)">Risk 1 · Edge Software Dependency</span>
+    <h3>Can the sensor hardware function without AiOO's software?</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">If AiOO installs proprietary edge software that locks the sensor output, the devices cannot produce audience data without their platform running. This would require a full edge CV rebuild — adding 4-8 weeks and requiring a specialized computer vision engineer.</p>
+    <div class="sub" style="color:var(--red)">Status: Pending confirmation from Hypermedia technical team</div>
+  </div>
+  <div class="c c-red">
+    <span class="lbl" style="color:var(--red)">Risk 2 · Data Portability</span>
+    <h3>Where does historical campaign and audience data live?</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">If all data is stored on AiOO's cloud infrastructure and there is no contractual obligation to provide data export, Hypermedia risks losing all historical benchmarks, campaign performance records, and audience analytics. This weakens brand renewal conversations.</p>
+    <div class="sub" style="color:var(--red)">Status: Pending confirmation</div>
+  </div>
+  <div class="c c-orange">
+    <span class="lbl" style="color:var(--orange)">Risk 3 · Patent Claim</span>
+    <h3>AiOO claims "patented" audience triggering</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">No patent number provided. Must be verified. If a granted patent exists with broad scope, it could constrain how any replacement platform implements real-time audience-triggered ad delivery. Most DOOH patents are narrow in scope.</p>
+    <div class="sub" style="color:var(--orange)">Action: Request patent number from AiOO. Conduct independent patent search.</div>
+  </div>
+  <div class="c c-orange">
+    <span class="lbl" style="color:var(--orange)">Risk 4 · Transition Continuity</span>
+    <h3>What happens to live campaigns during migration?</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">Active brand campaigns must continue running during the transition. A parallel-run period is required — both platforms operating simultaneously until the new platform is validated. Requires coordination with AiOO during the transition window.</p>
+    <div class="sub" style="color:var(--orange)">Mitigation: 2-4 week parallel run before full cutover</div>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 7: FINANCIAL COMPARISON ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--green)">07 · Financial Comparison</div>
+<h2>The economics of independence.</h2>
+
+<div class="c">
+  <table>
+    <tr><th></th><th style="text-align:right">Continue with AiOO</th><th style="text-align:right">Own Platform</th></tr>
+    <tr><td>Year 1 cost</td><td class="neg" style="text-align:right">$972K+ (license at $45/screen)</td><td class="warn" style="text-align:right">$150-250K build + $96-180K operations</td></tr>
+    <tr><td>Year 2 cost</td><td class="neg" style="text-align:right">$972K+ (likely increases at scale)</td><td class="pos" style="text-align:right">$96-180K operations only</td></tr>
+    <tr><td>Year 3 cost</td><td class="neg" style="text-align:right">$972K+</td><td class="pos" style="text-align:right">$96-180K operations only</td></tr>
+    <tr><td style="font-weight:700">3-year total</td><td class="neg" style="text-align:right;font-weight:700">$2.9M+</td><td class="pos" style="text-align:right;font-weight:700">$440-790K</td></tr>
+    <tr><td style="font-weight:700;color:var(--green)">3-year savings</td><td></td><td class="pos" style="text-align:right;font-weight:700">$2.1-2.5M</td></tr>
+  </table>
+</div>
+
+<div class="g g2" style="margin-top:14px">
+  <div class="c">
+    <span class="lbl">At full network (4,000 screens)</span>
+    <table>
+      <tr><td>AiOO license cost</td><td class="neg" style="text-align:right;font-weight:700">$2.16M/year</td></tr>
+      <tr><td>Own platform operations</td><td class="pos" style="text-align:right;font-weight:700">$96-180K/year</td></tr>
+      <tr><td style="color:var(--green);font-weight:700">Annual savings at scale</td><td class="pos" style="text-align:right;font-weight:700">$1.98-2.06M/year</td></tr>
+    </table>
+  </div>
+  <div class="c">
+    <span class="lbl">Additional revenue protection</span>
+    <table>
+      <tr><td>Programmatic revenue — keep 100%</td><td class="pos" style="text-align:right">vs. AiOO takes 8-60%</td></tr>
+      <tr><td>Audience segment revenue — keep 100%</td><td class="pos" style="text-align:right">vs. AiOO takes 50%</td></tr>
+      <tr><td>IP ownership</td><td class="pos" style="text-align:right">Hypermedia owns everything</td></tr>
+      <tr><td>Vendor dependency</td><td class="pos" style="text-align:right">Zero — full control</td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ══ SECTION 8: PHASED PLAN ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--purple)">08 · Transition Plan</div>
+<h2>Three phases to full independence.</h2>
+
+<div class="c" style="border-left:4px solid var(--red);margin-bottom:14px">
+  <span class="lbl" style="color:var(--red)">Phase 1 · Months 1-3 · Operational Independence</span>
+  <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Replace the core platform. No disruption to live campaigns or brand relationships.</p>
+  <div class="g g2">
+    <div>
+      <h3>Deliverables</h3>
+      <ul>
+        <li>Campaign management + audience-triggered ad serving</li>
+        <li>Audience intelligence (edge CV pipeline)</li>
+        <li>Hypermedia-branded dashboard + reporting</li>
+        <li>Device health monitoring across network</li>
+        <li>Historical data migration</li>
+        <li>2-4 week parallel run with existing platform</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Team</h3>
+      <ul>
+        <li><strong>Product lead:</strong> Samer Sadek — architecture, edge AI, system design</li>
+        <li><strong>Engineering:</strong> Ala + 1-2 engineers — CV/ML pipeline, backend, frontend</li>
+        <li><strong>Project management:</strong> Peter Abou Hachem — coordination, delivery, stakeholder management</li>
+      </ul>
+      <div style="margin-top:16px">
+        <span class="lbl" style="color:var(--ink)">Investment</span>
+        <div class="big-sm">$150-250K</div>
+        <div class="sub">Milestone-based. 30% kickoff · 30% at test-store validation · 40% at full rollout.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="c" style="border-left:4px solid var(--orange);margin-bottom:14px">
+  <span class="lbl" style="color:var(--orange)">Phase 2 · Months 3-6 · Enhancement</span>
+  <ul>
+    <li><strong>Ongoing platform operations:</strong> $8-15K/month — hosting, support, improvements, new features</li>
+    <li><strong>Audience segments product:</strong> package audience data for brands ($700-$1,500/brand/month revenue stream)</li>
+    <li><strong>Advanced reporting:</strong> dwell analysis, attention metrics, cross-store benchmarks</li>
+    <li><strong>POS integration preparation:</strong> connect to retailer transaction data for future attribution capability</li>
+    <li><strong>Extend to full network:</strong> deploy platform across remaining ~2,200 non-AiOO screens</li>
+  </ul>
+</div>
+
+<div class="c" style="border-left:4px solid var(--green);margin-bottom:14px">
+  <span class="lbl" style="color:var(--green)">Phase 3 · Month 6+ · Market Leadership</span>
+  <ul>
+    <li><strong>Programmatic capability:</strong> build or license SSP. Connect to demand-side platforms (TTD, DV360)</li>
+    <li><strong>Attribution:</strong> POS-matched campaign measurement. Modelled initially, deterministic as capability matures.</li>
+    <li><strong>Multi-network potential:</strong> platform architecture supports expanding to additional retail partners beyond current network</li>
+  </ul>
+</div>
+</div>
+
+<!-- ══ SECTION 9: INFORMATION NEEDED ══ -->
+<div class="sec">
+<div class="sec-label" style="color:var(--cyan)">09 · Information Required</div>
+<h2>What we need from the technical team<br><span style="color:var(--ink3)">to finalize the scope.</span></h2>
+
+<div class="c">
+  <table>
+    <tr><th>#</th><th>Question</th><th>Why It Matters</th></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">1</td><td>What sensor hardware is installed? Brand, model, OS.</td><td>Determines if replacement software can run on existing devices</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">2</td><td>Can raw sensor data be accessed without AiOO's software?</td><td>Single most important technical question — determines full project scope</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">3</td><td>What edge compute hardware is at each screen?</td><td>Determines deployment approach for replacement edge software</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">4</td><td>How many screens have AiOO sensors installed and live?</td><td>Defines exact scope and cost of Phase 1</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">5</td><td>Is the current dashboard fully hosted by AiOO?</td><td>Confirms cloud dependency</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">6</td><td>Can we see a sample brand report from the current platform?</td><td>Defines reporting requirements for the replacement</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">7</td><td>Is there an existing API or is everything via the AiOO platform?</td><td>Determines integration approach</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">8</td><td>Can the hardware operate independently without AiOO's license?</td><td>Legal foundation for the transition</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">9</td><td>Does the IP ownership cover hardware + data, or just brand?</td><td>Legal foundation for data portability</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">10</td><td>Where is audience + campaign data stored?</td><td>Determines data migration scope</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">11</td><td>Does Hypermedia have access to historical data?</td><td>Critical for brand renewal conversations during transition</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">12</td><td>What POS/loyalty system do the stores use? Any integration today?</td><td>Scope for attribution in Phase 2-3</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">13</td><td>If AiOO's software goes offline, do screens still display content?</td><td>Determines urgency of fallback CMS</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">14</td><td>Who handles sensor maintenance and replacements?</td><td>Operational continuity during transition</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">15</td><td>What device/player hardware model is installed? OS details.</td><td>Technical compatibility for replacement deployment</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">16</td><td>Does the contract include IP assignment or just a license?</td><td>Legal clarity on what Hypermedia owns after transition</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">17</td><td>Are any DSP integrations currently live?</td><td>Determines programmatic revenue at risk during transition</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">18</td><td>What % of revenue is programmatic vs direct-sold?</td><td>Prioritizes SSP rebuild urgency</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">19</td><td>Can someone record a 5-min walkthrough of the current dashboard?</td><td>Accelerates replacement UI design</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">20</td><td>What is the notice period in the current AiOO contract?</td><td>Defines transition timeline constraints</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">21</td><td>Is there a patent number for the "patented" audience triggering?</td><td>Legal risk assessment</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:700">22</td><td>What CMS runs the screens without AiOO?</td><td>Fallback capability + Phase 2 expansion scope</td></tr>
+  </table>
+</div>
+
+<div class="callout callout-blue" style="margin-top:14px">
+  <strong style="color:var(--blue)">Priority answers:</strong> Questions #2 (raw sensor access) and #4 (screen count) determine the entire project scope and cost. We recommend answering these first.
+</div>
+</div>
+
+<!-- ══ CLOSE ══ -->
+<div class="sec" style="text-align:center;padding:60px 0">
+  <div class="eyebrow" style="color:var(--green)">Outcome</div>
+  <h2 style="max-width:700px;margin:0 auto 20px">Full technology ownership.<br>No vendor lock-in.<br><span style="color:var(--green)">$2M+ in annual savings at scale.</span></h2>
+  <p style="color:var(--ink2);font-size:16px;line-height:1.8;max-width:600px;margin:0 auto">Hypermedia's retail media business is built on its relationships with retailers and brands — not on any single technology vendor. This transition ensures the technology serves the business, not the other way around.</p>
+</div>
+
+<div class="footer">
+  <p>Hypermedia — Technology Independence Assessment</p>
+  <p style="margin-top:4px">Prepared by Peter Abou Hachem & Samer Sadek · April 2026</p>
+  <p style="margin-top:4px">Based on independent review of AiOO documentation (7 files) · All claims sourced and cited</p>
+</div>
+
+</div>
+</body>
+</html>
