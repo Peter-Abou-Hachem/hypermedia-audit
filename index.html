@@ -46,6 +46,21 @@
 
   /* ── Number accent ── */
   .sec-num{font-size:clamp(80px,12vw,140px);font-weight:800;letter-spacing:-0.06em;line-height:0.85;color:rgba(255,255,255,0.02);position:absolute;right:0;top:-20px;pointer-events:none;user-select:none}
+
+  /* ── Enhanced hover ── */
+  .c{transition:all 0.2s cubic-bezier(0.16,1,0.3,1)}
+  .c:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+
+  /* ── Verdict card hover ── */
+  .verdict{transition:all 0.15s ease}
+  .verdict:hover{transform:scale(1.005);box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+
+  /* ── Smooth section transitions ── */
+  .sec{transition:all 0.3s ease}
+
+  /* ── Tag pulse for important items ── */
+  @keyframes tag-pulse{0%,100%{opacity:1}50%{opacity:0.7}}
+  .tag-red{animation:tag-pulse 2s ease infinite}
   .g{display:grid;gap:14px;margin-bottom:14px}
   .g2{grid-template-columns:1fr 1fr}
   .g3{grid-template-columns:1fr 1fr 1fr}
@@ -103,6 +118,7 @@
     <a class="nav-dot" href="#s-platform">Platform</a>
     <a class="nav-dot" href="#s-dependency">Dependencies</a>
     <a class="nav-dot" href="#s-claims">Claims</a>
+    <a class="nav-dot" href="#s-value">Value & SLA</a>
     <a class="nav-dot" href="#s-future">Future-Proof</a>
     <a class="nav-dot" href="#s-rebuild">Rebuild</a>
     <a class="nav-dot" href="#s-risks">Risks</a>
@@ -519,6 +535,109 @@
 <div class="c" style="margin-bottom:20px;margin-top:-4px;border-top-left-radius:0;border-top-right-radius:0">
   <p style="font-size:13px;color:var(--ink2);line-height:1.7"><strong>Assessment:</strong> Their documentation specifies "Android-based and edge-player friendly architecture." This suggests compatibility with standard Android media players, which is good. However, the AudienceEye edge processing requires specific compute capability (GPU for CV inference) that not all standard players have. The claim is true for the cloud platform (Campaign IQ, Flow, Raidar) but likely requires specific hardware for the audience intelligence layer. <strong>This is positive for a rebuild — if the players are standard Android devices, a replacement platform can be deployed on the same hardware.</strong></p>
 </div>
+</div>
+
+<!-- ══ SECTION 4C: VALUE & SLA CHALLENGE ══ -->
+<div class="sec fade-in" id="s-value" style="position:relative"><div class="sec-num">★</div>
+<div class="sec-label" style="color:var(--red)">Value & SLA Challenge</div>
+<h2>What AiOO claims to deliver.<br><span style="color:var(--ink3)">What the evidence actually shows.</span></h2>
+
+<!-- 4 pillars challenged -->
+<div class="g g4" style="margin-top:24px">
+  <div class="c" style="border-top:3px solid var(--green)">
+    <span class="lbl" style="color:var(--green)">A · Ad Server</span>
+    <div style="font-size:14px;color:var(--ink);font-weight:600;margin-bottom:8px">Works. Commodity.</div>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">Campaign IQ functions fine. But ad servers cost $15-20/screen/month. AiOO charges $45 by bundling features HM didn't ask for.</p>
+    <div style="margin-top:10px;padding:8px 12px;border-radius:8px;background:rgba(105,219,124,0.06)">
+      <span style="font-size:11px;color:var(--green);font-weight:600">Fair value: $15-20/screen</span>
+    </div>
+  </div>
+  <div class="c" style="border-top:3px solid var(--orange)">
+    <span class="lbl" style="color:var(--orange)">B · Audience Reports</span>
+    <div style="font-size:14px;color:var(--ink);font-weight:600;margin-bottom:8px">Unreliable at source.</div>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">Reports are only as good as the sensor data. HM's team confirmed reporting inconsistencies — likely a collection issue, not software.</p>
+    <div style="margin-top:10px;padding:8px 12px;border-radius:8px;background:rgba(255,169,77,0.06)">
+      <span style="font-size:11px;color:var(--orange);font-weight:600">Value: undermined by data quality</span>
+    </div>
+  </div>
+  <div class="c" style="border-top:3px solid var(--blue)">
+    <span class="lbl" style="color:var(--blue)">C · Real-Time Targeting</span>
+    <div style="font-size:14px;color:var(--ink);font-weight:600;margin-bottom:8px">The one differentiator.</div>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">Genuine value — but no accuracy SLA, no published benchmark, no methodology for "reduced wasted reach." How much waste is reduced? No data.</p>
+    <div style="margin-top:10px;padding:8px 12px;border-radius:8px;background:rgba(116,192,252,0.06)">
+      <span style="font-size:11px;color:var(--blue);font-weight:600">Fair value: $10-15/screen</span>
+    </div>
+  </div>
+  <div class="c" style="border-top:3px solid var(--red)">
+    <span class="lbl" style="color:var(--red)">D · Premium Packaging</span>
+    <div style="font-size:14px;color:var(--ink);font-weight:600;margin-bottom:8px">Unproven.</div>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">"Sell targeted DOOH at higher CPMs." But zero evidence of actual CPM uplift achieved for HM. No case study. No before/after data. Sales narrative, not measured outcome.</p>
+    <div style="margin-top:10px;padding:8px 12px;border-radius:8px;background:rgba(255,107,107,0.06)">
+      <span style="font-size:11px;color:var(--red);font-weight:600">Proven value: $0</span>
+    </div>
+  </div>
+</div>
+
+<!-- Cost math -->
+<div class="c" style="margin-top:14px;text-align:center;padding:28px">
+  <div class="g g3" style="margin-bottom:0">
+    <div>
+      <div style="font-size:11px;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px">AiOO charges</div>
+      <div style="font-size:32px;font-weight:800;color:var(--red)">$45</div>
+      <div style="font-size:12px;color:var(--ink3)">/screen/month</div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px">Fair market value</div>
+      <div style="font-size:32px;font-weight:800;color:var(--green)">$25-35</div>
+      <div style="font-size:12px;color:var(--ink3)">/screen/month</div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px">Overpayment at 472 screens</div>
+      <div style="font-size:32px;font-weight:800;color:var(--orange)">$57-113K</div>
+      <div style="font-size:12px;color:var(--ink3)">/year</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLA gaps -->
+<h3 style="margin-top:32px;margin-bottom:16px">Missing SLAs — What AiOO Doesn't Guarantee</h3>
+<div class="g g3">
+  <div class="c c-red">
+    <div style="font-size:24px;margin-bottom:8px">🎯</div>
+    <h3 style="font-size:14px;color:var(--red)">No Data Accuracy SLA</h3>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">No commitment on person count accuracy, demographic accuracy, or dwell time precision. HM pays for "audience intelligence" with no guarantee the intelligence is correct.</p>
+  </div>
+  <div class="c c-red">
+    <div style="font-size:24px;margin-bottom:8px">⏱</div>
+    <h3 style="font-size:14px;color:var(--red)">No Uptime SLA</h3>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">No committed platform availability, no response time for outages, no penalty for downtime. The $45/screen fee applies whether systems are working or not.</p>
+  </div>
+  <div class="c c-red">
+    <div style="font-size:24px;margin-bottom:8px">📊</div>
+    <h3 style="font-size:14px;color:var(--red)">No CPM Uplift Guarantee</h3>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">The entire pricing rationale is "you'll earn more." But no committed uplift %, no refund if it doesn't materialize, no benchmark vs. non-targeted inventory.</p>
+  </div>
+  <div class="c c-orange">
+    <div style="font-size:24px;margin-bottom:8px">🔄</div>
+    <h3 style="font-size:14px;color:var(--orange)">No Data Portability SLA</h3>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">Manual extraction only. No API, no automated export, no defined format, no guaranteed timeline for data handover.</p>
+  </div>
+  <div class="c c-orange">
+    <div style="font-size:24px;margin-bottom:8px">📡</div>
+    <h3 style="font-size:14px;color:var(--orange)">No Sensor Health SLA</h3>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">If 20% of sensors go offline, audience data is garbage for those locations — but the $45/screen fee still applies. No minimum sensor uptime committed.</p>
+  </div>
+  <div class="c c-orange">
+    <div style="font-size:24px;margin-bottom:8px">⚡</div>
+    <h3 style="font-size:14px;color:var(--orange)">No Latency Definition</h3>
+    <p style="font-size:12px;color:var(--ink2);line-height:1.6">"Real-time" is not a specification. Is it 100ms? 5 seconds? 30 seconds? No defined latency for audience detection or ad triggering.</p>
+  </div>
+</div>
+
+<div class="callout callout-red" style="margin-top:14px">
+  <strong style="color:var(--red)">The core issue:</strong> AiOO prices its platform as "monetization infrastructure" but provides <strong>no SLA guaranteeing the monetization works</strong>. No accuracy commitment, no uptime guarantee, no CPM uplift floor. HM is paying a premium for outcomes that aren't measured, on data that has known quality issues.
+</div>
+<div class="source">Sources: AiOO 2026 Commercial Terms (4 pages), HM Technical Evaluation answers, call notes April 17 2026</div>
 </div>
 
 <!-- ══ SECTION 4B: FUTURE-PROOFING ══ -->
