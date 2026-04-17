@@ -149,14 +149,14 @@
         <div class="sub" style="color:var(--orange)">operational layers fully<br>controlled by AiOO</div>
       </div>
       <div style="text-align:center;background:rgba(105,219,124,0.06);border:1px solid rgba(105,219,124,0.15);border-radius:12px;padding:20px">
-        <div class="big" style="color:var(--green);font-size:32px">$150-250K</div>
-        <div class="sub" style="color:var(--green)">to own it all<br>vs. $3-5M/yr to rent it</div>
+        <div class="big" style="color:var(--green);font-size:32px">$500</div>
+        <div class="sub" style="color:var(--green)">per device — standard Linux box<br>472 owned by HM. Zero lock-in.</div>
       </div>
     </div>
 
     <!-- Core Finding -->
     <div style="background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);border-radius:12px;padding:16px 20px;margin-bottom:24px">
-      <p style="font-size:16px;color:var(--ink);line-height:1.6;font-weight:600;margin:0"><span style="color:var(--red)">Core finding:</span> AiOO's $5-10M rebuild estimate is inflated 20-40x. The operational platform Hypermedia actually needs can be built for $150-250K in 3 months — and Hypermedia keeps 100% of the economics from that point forward.</p>
+      <p style="font-size:16px;color:var(--ink);line-height:1.6;font-weight:600;margin:0"><span style="color:var(--red)">Core finding:</span> AiOO's $5-10M rebuild estimate is inflated 20-40x. The edge devices are standard $500 NVIDIA Jetson boxes — not proprietary hardware. Hypermedia owns all 472 units. The operational platform can be rebuilt for $150-250K in 3 months, deployed on the same hardware, and Hypermedia keeps 100% of the economics from that point forward.</p>
     </div>
 
     <!-- 3 Risks -->
@@ -287,11 +287,11 @@
     <div class="callout callout-red" style="margin-top:10px">
       <strong style="color:var(--red)">Confirmed (Q2):</strong> "Raw sensor data extraction and ingestion is managed entirely by AiOO. Hypermedia does not currently participate in the data cleaning or preparation pipeline."
       <br><br>
-      <strong>Hardware origin (Q1 — updated):</strong> Hypermedia owns <strong>472 camera devices and edge PCs</strong> — all fully owned and paid for by Hypermedia. Of these, <strong>243 units</strong> were originally sourced from <strong>Advertima</strong>, the rest procured directly. Advertima's software is no longer in use — all cameras now run AiOO's software. <a href="https://airtable.com/apprKDU8VKyr7sHaB/shro16dqZHKfhXFVx" target="_blank" style="color:var(--cyan)">View Hardware Specs in Airtable →</a>
+      <strong>Hardware origin (Q1 — updated):</strong> Hypermedia owns <strong>472 camera devices and edge PCs</strong> — all fully owned and paid for by Hypermedia. Of these, 243 units were originally sourced from Advertima, the rest procured directly. Advertima's software is no longer in use — all cameras now run AiOO's software. <a href="https://airtable.com/apprKDU8VKyr7sHaB/shro16dqZHKfhXFVx" target="_blank" style="color:var(--cyan)">View Hardware Specs in Airtable →</a>
       <br><br>
-      <strong>Implication:</strong> Hardware is confirmed Hypermedia property — there is no hardware ownership dispute. The devices are very likely off-the-shelf edge compute boxes (standard in the DOOH industry). The technical audit will confirm exact manufacturer, specs, and OS to determine whether replacement software can be deployed on the same hardware without swapping devices.
+      <strong style="color:var(--green)">Hardware confirmed: Seeed Studio reComputer J3010</strong> — a <strong>$500 off-the-shelf NVIDIA Jetson Orin Nano</strong> edge computer. Ships with Ubuntu Linux + CUDA + TensorRT pre-installed. <strong>Zero proprietary software from Seeed or AiOO baked into the hardware.</strong> AiOO's edge software is custom code deployed ON TOP of a standard Linux box — not firmware burned into a proprietary device.
       <br><br>
-      <strong style="color:var(--orange)">This is why the technical audit is critical:</strong> Confirming the device specs and OS determines whether the existing 472 devices can be re-used as-is, or need to be supplemented. If they're standard compute boxes (highly likely), re-use is straightforward.
+      <strong style="color:var(--green)">What this means:</strong> Hypermedia can wipe and redeploy new software on all 472 devices without buying new hardware. YOLOv8 (person detection, age/gender classification) runs natively on this exact hardware — it is a solved problem with documented guides. Quividi, the global leader in DOOH audience measurement, runs on the same NVIDIA Jetson platform. Hardware is available through 2032. There is <strong>no hardware lock-in. No proprietary device. No barrier to replacement.</strong>
     </div>
   </div>
   <div class="c c-blue">
@@ -310,6 +310,43 @@
 <!-- Fallback confirmed -->
 <div class="callout callout-green" style="margin-top:14px">
   <strong style="color:var(--green)">Safety net confirmed (Q8 + Q13):</strong> Standard screens (non-camera) can fall back to <strong>BroadSign CMS</strong> — the system Hypermedia operated on before AiOO. Default content is already provisioned. The TechOps team knows the recovery procedure. Smart screens (camera-enabled) remain dependent on AiOO for audience classification — no alternative exists yet.
+</div>
+
+<!-- Hardware deep-dive card -->
+<div class="c c-green glow-green fade-in" style="margin-top:14px;border-top:3px solid var(--green)">
+  <span class="lbl" style="color:var(--green);font-size:11px">Hardware Confirmed — No Lock-In</span>
+  <h3 style="margin-bottom:12px">Seeed Studio reComputer J3010 · NVIDIA Jetson Orin Nano</h3>
+  <div class="g g4" style="margin-bottom:14px">
+    <div style="text-align:center;padding:12px;background:rgba(105,219,124,0.06);border-radius:10px;border:1px solid rgba(105,219,124,0.12)">
+      <div style="font-size:22px;font-weight:700;color:var(--green)">$500</div>
+      <div class="sub">per unit, off-the-shelf</div>
+    </div>
+    <div style="text-align:center;padding:12px;background:rgba(105,219,124,0.06);border-radius:10px;border:1px solid rgba(105,219,124,0.12)">
+      <div style="font-size:22px;font-weight:700;color:var(--green)">20-34</div>
+      <div class="sub">TOPS AI performance</div>
+    </div>
+    <div style="text-align:center;padding:12px;background:rgba(105,219,124,0.06);border-radius:10px;border:1px solid rgba(105,219,124,0.12)">
+      <div style="font-size:22px;font-weight:700;color:var(--green)">Ubuntu</div>
+      <div class="sub">standard Linux OS</div>
+    </div>
+    <div style="text-align:center;padding:12px;background:rgba(105,219,124,0.06);border-radius:10px;border:1px solid rgba(105,219,124,0.12)">
+      <div style="font-size:22px;font-weight:700;color:var(--green)">2032</div>
+      <div class="sub">availability guaranteed</div>
+    </div>
+  </div>
+  <table>
+    <tr><td><strong>GPU</strong></td><td>512-core NVIDIA Ampere, 16 Tensor Cores</td></tr>
+    <tr><td><strong>CPU</strong></td><td>6-core Arm Cortex-A78AE @ 1.5 GHz</td></tr>
+    <tr><td><strong>RAM</strong></td><td>4GB LPDDR5</td></tr>
+    <tr><td><strong>Storage</strong></td><td>128GB NVMe SSD pre-installed</td></tr>
+    <tr><td><strong>Pre-installed</strong></td><td>JetPack 5.1.1 (Ubuntu + CUDA 12.6 + cuDNN + TensorRT)</td></tr>
+    <tr><td><strong>NOT pre-installed</strong></td><td>No AI application software. No AiOO software. No Seeed software. Blank canvas.</td></tr>
+    <tr><td><strong>Proven in DOOH</strong></td><td>Quividi (global #1 audience measurement) runs on same Jetson platform</td></tr>
+  </table>
+  <div class="callout callout-green" style="margin-top:14px">
+    <strong style="color:var(--green)">Bottom line:</strong> AiOO's edge software is <strong>custom code deployed on a standard $500 Linux box</strong>. It is not firmware. It is not proprietary hardware. Hypermedia owns all 472 devices. Any qualified CV/ML team can deploy replacement inference pipelines on these exact devices — using the same NVIDIA tools (CUDA, TensorRT, DeepStream) that AiOO uses. The "Layer 1" rebuild is a software deployment, not a hardware replacement.
+  </div>
+  <div class="source">Sources: <a href="https://www.seeedstudio.com/reComputer-J3010-w-o-power-adapter-p-5631.html" target="_blank" style="color:var(--cyan)">Seeed Studio Product Page →</a> · <a href="https://airtable.com/apprKDU8VKyr7sHaB/shro16dqZHKfhXFVx" target="_blank" style="color:var(--cyan)">HM Hardware Asset Register →</a> · NVIDIA JetPack SDK docs · Quividi deployment documentation</div>
 </div>
 </div>
 
