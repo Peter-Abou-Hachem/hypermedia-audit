@@ -171,7 +171,7 @@
     <!-- Recommendation -->
     <div style="background:rgba(105,219,124,0.08);border:1px solid rgba(105,219,124,0.2);border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <span class="lbl" style="color:var(--green)">Recommendation</span>
-      <p style="font-size:15px;color:var(--ink);line-height:1.7;margin:0">Commission a 1-week on-site technical audit to confirm hardware specs and data access. Then execute a phased platform replacement ($150-250K, 12 weeks) that gives Hypermedia full ownership of its technology stack, its data, and 100% of the margin the network generates.</p>
+      <p style="font-size:15px;color:var(--ink);line-height:1.7;margin:0">Commission a technical audit of the 472 edge devices and sensor data quality. Then rebuild the <strong>one component that matters</strong> — the real-time audience targeting engine ($40-80K, 6-8 weeks). Campaign IQ, BroadSign, and SSP stay untouched. Hypermedia's core business is not disrupted.</p>
     </div>
 
     <!-- Immediate Actions -->
@@ -649,28 +649,65 @@
   </table>
 </div>
 
+<!-- UPDATED AFTER HABIB CALL APR 17 -->
+<div class="callout" style="background:rgba(105,219,124,0.08);border:2px solid rgba(105,219,124,0.25);margin-bottom:14px;position:relative">
+  <div style="position:absolute;top:-12px;right:20px;transform:rotate(4deg);background:var(--green);color:#000;font-family:'DM Mono',monospace;font-size:10px;font-weight:600;padding:6px 14px;border-radius:8px;box-shadow:0 4px 12px rgba(105,219,124,0.3);z-index:2">UPDATED — POST MEETING APR 17</div>
+  <span class="lbl" style="color:var(--green);font-size:11px">Revised Scope — Confirmed by Habib</span>
+  <p style="font-size:16px;color:var(--ink);line-height:1.7;font-weight:600;margin-bottom:12px">"Do not affect HM core business. Only rebuild the real-time audience data layer — after a technical audit."</p>
+  <p style="font-size:14px;color:var(--ink2);line-height:1.7">Campaign IQ, BroadSign CMS, and SSP all work and remain untouched. The only component that needs to be rebuilt is the <strong>real-time audience targeting engine</strong> — the sensor → detection → demographics → ad trigger pipeline. This is the core IP for retail media. Everything else is commodity.</p>
+</div>
+
 <div class="g g2">
   <div class="c c-green">
-    <span class="lbl" style="color:var(--green)">Phase 1 Deliverables (3 months)</span>
-    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Everything Hypermedia needs to operate independently. No loss of capability that affects live campaigns or brand relationships.</p>
+    <span class="lbl" style="color:var(--green)">Phase 1 — What Gets Built (6-8 weeks)</span>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">One thing only. The real-time audience targeting engine.</p>
     <ul>
-      <li><strong>Campaign management platform</strong> — setup, scheduling, audience-based rules, delivery control, proof-of-play logs</li>
-      <li><strong>Audience intelligence</strong> — real-time audience detection, demographics, dwell time, attention metrics</li>
-      <li><strong>Hypermedia dashboard</strong> — per-store analytics, campaign performance, brand-ready exportable reports</li>
-      <li><strong>Device monitoring</strong> — network-wide device health, online/offline status, alerts</li>
-      <li><strong>Data migration</strong> — historical campaign and audience data transferred to Hypermedia-owned infrastructure</li>
+      <li><strong>Real-time audience detection</strong> — person detection, counting, demographics (age, gender), dwell time on 472 Jetson devices</li>
+      <li><strong>Targeting trigger API</strong> — open API that any CMS/SSP can consume (not locked inside a closed platform)</li>
+      <li><strong>Sensor data quality</strong> — calibration, accuracy validation, fix the reporting inconsistencies at source</li>
+      <li><strong>Screen-agnostic architecture</strong> — built to extend to Smart TVs / CTV in the future</li>
     </ul>
+    <div style="margin-top:14px;display:flex;gap:12px">
+      <div style="text-align:center;padding:12px 16px;background:rgba(105,219,124,0.08);border-radius:10px;border:1px solid rgba(105,219,124,0.15);flex:1">
+        <div style="font-size:22px;font-weight:700;color:var(--green)">$40-80K</div>
+        <div class="sub">build cost</div>
+      </div>
+      <div style="text-align:center;padding:12px 16px;background:rgba(105,219,124,0.08);border-radius:10px;border:1px solid rgba(105,219,124,0.15);flex:1">
+        <div style="font-size:22px;font-weight:700;color:var(--green)">6-8 weeks</div>
+        <div class="sub">after tech audit</div>
+      </div>
+    </div>
   </div>
   <div class="c">
-    <span class="lbl" style="color:var(--ink3)">Deferred to Phase 2-3</span>
-    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Features that add value but are not required for operational continuity.</p>
+    <span class="lbl" style="color:var(--ink3)">What Stays As-Is (No Change)</span>
+    <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">Confirmed working. Do not touch.</p>
     <ul>
-      <li><strong>Programmatic SSP</strong> — Hypermedia runs direct-sold campaigns in Phase 1. Programmatic is additive revenue, not survival.</li>
-      <li><strong>Attribution (Echo equivalent)</strong> — Body ID re-identification + POS matching. Brands have accepted modelled attribution for decades. Not urgent.</li>
-      <li><strong>Audience segment marketplace</strong> — Selling audience data as a standalone product to brands. High-value, but Phase 2+.</li>
-      <li><strong>Advanced workflow automation</strong> — Enterprise-grade brief/approval chains. Manual process is fine initially.</li>
+      <li><strong>Campaign IQ (ad server)</strong> — working, no issues reported</li>
+      <li><strong>BroadSign (CMS)</strong> — Hypermedia's own system, reliable</li>
+      <li><strong>SSP</strong> — available from existing providers</li>
+      <li><strong>Assist Pay</strong> — in use</li>
+    </ul>
+    <span class="lbl" style="color:var(--orange);margin-top:16px">Phase 2 — Enhance Later</span>
+    <ul>
+      <li><strong>Flow (orchestration)</strong> — link between CMS, SSP, and HM digital inventory. More important than initially assessed.</li>
+      <li><strong>Open API layer</strong> — expose audience data to external platforms and integrations</li>
+      <li><strong>DSP connectivity</strong> — proper global-standard programmatic integrations</li>
+      <li><strong>Smart TV / CTV extension</strong> — same targeting engine, new screen surfaces</li>
     </ul>
   </div>
+</div>
+
+<!-- Prerequisite -->
+<div class="c c-orange fade-in" style="margin-top:14px">
+  <span class="lbl" style="color:var(--orange)">Prerequisite — Technical Audit</span>
+  <p style="color:var(--ink2);font-size:14px;line-height:1.7">Before any build begins, a technical audit is required to:</p>
+  <ul>
+    <li>Validate sensor data accuracy (the reporting inconsistency may be a <strong>collection issue at the sensor level</strong>, not a software issue)</li>
+    <li>Audit clean room data environment and encryption mechanisms</li>
+    <li>Test the 5,000 simultaneous recognition claim (likely aggregate, not per-device — needs verification)</li>
+    <li>Confirm exact device firmware, OS version, and camera specs across all 472 units</li>
+    <li>Benchmark against Derq-style large-scale tracking for feasibility assessment</li>
+  </ul>
 </div>
 </div>
 
@@ -715,8 +752,8 @@
 <!-- PAYBACK — FIRST THING IN THIS SECTION -->
 <div class="c glow-green" style="text-align:center;padding:36px;border:1px solid rgba(105,219,124,0.25);margin-bottom:20px">
   <span class="lbl" style="color:var(--green);font-size:11px;letter-spacing:0.2em">Investment Payback Period</span>
-  <div style="font-size:clamp(52px,10vw,88px);font-weight:800;letter-spacing:-0.04em;color:var(--green);line-height:1;margin:12px 0">5-8 weeks</div>
-  <p style="color:var(--ink2);font-size:16px;margin-top:12px;line-height:1.7;max-width:600px;margin-left:auto;margin-right:auto">A $150-250K platform investment pays for itself in <strong style="color:var(--ink)">5-8 weeks</strong> against the $1.8M/year currently flowing to AiOO under the COFREE model. From that point forward, every dollar of screen revenue stays with Hypermedia.</p>
+  <div style="font-size:clamp(52px,10vw,88px);font-weight:800;letter-spacing:-0.04em;color:var(--green);line-height:1;margin:12px 0">2-4 weeks</div>
+  <p style="color:var(--ink2);font-size:16px;margin-top:12px;line-height:1.7;max-width:600px;margin-left:auto;margin-right:auto">A $40-80K targeting engine rebuild pays for itself in <strong style="color:var(--ink)">2-4 weeks</strong> against the revenue share currently flowing to AiOO. Campaign IQ, CMS, and SSP stay untouched — zero business disruption.</p>
 </div>
 
 <!-- License costs at scale -->
