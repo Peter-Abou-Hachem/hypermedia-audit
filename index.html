@@ -198,8 +198,8 @@
   </div>
   <div class="c c-purple">
     <span class="lbl" style="color:var(--purple)">AiOO-Enabled</span>
-    <div class="big" style="color:var(--purple)">~1,200</div>
-    <div class="sub">Screens with AiOO edge players<br><span class="source">AiOO replaced Advertima hardware with their own players. AiOO GTM references 1,800 — actual deployed: ~1,200</span></div>
+    <div class="big" style="color:var(--purple)">472</div>
+    <div class="sub">Camera devices + edge PCs<br>All owned by Hypermedia<br><span class="source">Source: HM Tech Eval Q1 (updated). 243 from Advertima, rest procured directly.</span></div>
   </div>
   <div class="c">
     <span class="lbl" style="color:var(--green)">Annual Revenue</span>
@@ -287,11 +287,11 @@
     <div class="callout callout-red" style="margin-top:10px">
       <strong style="color:var(--red)">Confirmed (Q2):</strong> "Raw sensor data extraction and ingestion is managed entirely by AiOO. Hypermedia does not currently participate in the data cleaning or preparation pipeline."
       <br><br>
-      <strong>Hardware origin (Q1):</strong> Sensors were originally supplied by <strong>Advertima</strong>. AiOO subsequently replaced Advertima's hardware with their own edge players (~1,200 units deployed). Advertima's software is no longer in use. <a href="https://airtable.com/apprKDU8VKyr7sHaB/shro16dqZHKfhXFVx" target="_blank" style="color:var(--cyan)">View Hardware Specs in Airtable →</a>
+      <strong>Hardware origin (Q1 — updated):</strong> Hypermedia owns <strong>472 camera devices and edge PCs</strong> — all fully owned and paid for by Hypermedia. Of these, <strong>243 units</strong> were originally sourced from <strong>Advertima</strong>, the rest procured directly. Advertima's software is no longer in use — all cameras now run AiOO's software. <a href="https://airtable.com/apprKDU8VKyr7sHaB/shro16dqZHKfhXFVx" target="_blank" style="color:var(--cyan)">View Hardware Specs in Airtable →</a>
       <br><br>
-      <strong>Implication:</strong> AiOO's edge players are very likely off-the-shelf hardware sourced from Chinese manufacturers (standard Android edge compute boxes) — not proprietary AiOO-designed devices. This is typical in the DOOH industry. If confirmed via the technical audit, these devices can run any compatible software — the hardware itself is commodity and replaceable. A full edge CV rebuild IS required regardless, since AiOO's software layer must be replaced.
+      <strong>Implication:</strong> Hardware is confirmed Hypermedia property — there is no hardware ownership dispute. The devices are very likely off-the-shelf edge compute boxes (standard in the DOOH industry). The technical audit will confirm exact manufacturer, specs, and OS to determine whether replacement software can be deployed on the same hardware without swapping devices.
       <br><br>
-      <strong style="color:var(--orange)">This is why the technical audit is critical:</strong> Confirming the device manufacturer, specs, and OS determines whether the existing ~1,200 players can be re-used as-is, or need to be swapped. If they're standard Android boxes (90% likely), re-use is straightforward.
+      <strong style="color:var(--orange)">This is why the technical audit is critical:</strong> Confirming the device specs and OS determines whether the existing 472 devices can be re-used as-is, or need to be supplemented. If they're standard compute boxes (highly likely), re-use is straightforward.
     </div>
   </div>
   <div class="c c-blue">
@@ -323,7 +323,7 @@
     <tr><th>Layer</th><th>AiOO Controls</th><th>Hypermedia Controls</th><th>Status</th></tr>
     <tr><td><strong>Physical screens</strong></td><td>—</td><td class="pos">Owned by Hypermedia</td><td><span class="tag tag-green">CONFIRMED</span></td></tr>
     <tr><td><strong>Network / connectivity</strong></td><td>—</td><td class="pos">Managed by HM TechOps</td><td><span class="tag tag-green">CONFIRMED</span></td></tr>
-    <tr><td><strong>Sensor hardware</strong></td><td>Edge software (AiOO installs)</td><td>Physical devices (Advertima-origin)</td><td><span class="tag tag-red">AiOO DEPENDENT</span></td></tr>
+    <tr><td><strong>Sensor hardware (472 units)</strong></td><td>Edge software only</td><td class="pos">All 472 devices owned + paid for by HM</td><td><span class="tag tag-orange">SOFTWARE DEPENDENT</span></td></tr>
     <tr><td><strong>Raw sensor data</strong></td><td class="neg">Entirely managed by AiOO</td><td>No access to data pipeline</td><td><span class="tag tag-red">AiOO CONTROLLED</span></td></tr>
     <tr><td><strong>Audience intelligence</strong></td><td class="neg">AudienceEye — AiOO's software</td><td>—</td><td><span class="tag tag-red">AiOO CONTROLLED</span></td></tr>
     <tr><td><strong>Campaign management</strong></td><td class="neg">Campaign IQ — fully hosted by AiOO</td><td>No admin access</td><td><span class="tag tag-red">AiOO CONTROLLED</span></td></tr>
@@ -689,12 +689,12 @@
 <h3 style="margin-top:24px;margin-bottom:14px">AiOO License Costs at Scale</h3>
 <div class="c">
   <table>
-    <tr><th>Pricing Tier</th><th style="text-align:right">Per Screen/Month</th><th style="text-align:right">At 1,200 Screens</th><th style="text-align:right">At 3,892 Screens</th></tr>
-    <tr><td>Current introductory rate</td><td style="text-align:right">$45</td><td class="warn" style="text-align:right">$54K/mo · $648K/yr</td><td class="warn" style="text-align:right">$175K/mo · $2.1M/yr</td></tr>
-    <tr><td>Pulse (AudienceEye) only</td><td style="text-align:right">$40-60</td><td style="text-align:right;color:var(--ink2)">$48-72K/mo</td><td style="text-align:right;color:var(--ink2)">$156-234K/mo</td></tr>
-    <tr><td>+ Connect (Campaign IQ, Tier 3)</td><td style="text-align:right">$70-100</td><td style="text-align:right;color:var(--ink2)">$84-120K/mo</td><td style="text-align:right;color:var(--ink2)">$273-389K/mo</td></tr>
-    <tr><td>+ Echo (Attribution)</td><td style="text-align:right">$50-70</td><td style="text-align:right;color:var(--ink2)">$60-84K/mo</td><td style="text-align:right;color:var(--ink2)">$195-273K/mo</td></tr>
-    <tr style="border-top:2px solid var(--line)"><td style="font-weight:700">Full stack total</td><td class="neg" style="text-align:right;font-weight:700">$160-230</td><td class="neg" style="text-align:right;font-weight:700">$192-276K/mo<br>$2.3-3.3M/yr</td><td class="neg" style="text-align:right;font-weight:700">$623-896K/mo<br>$7.5-10.7M/yr</td></tr>
+    <tr><th>Pricing Tier</th><th style="text-align:right">Per Screen/Month</th><th style="text-align:right">At 472 Smart Screens</th><th style="text-align:right">At 3,892 Screens</th></tr>
+    <tr><td>Current introductory rate</td><td style="text-align:right">$45</td><td class="warn" style="text-align:right">$21K/mo · $255K/yr</td><td class="warn" style="text-align:right">$175K/mo · $2.1M/yr</td></tr>
+    <tr><td>Pulse (AudienceEye) only</td><td style="text-align:right">$40-60</td><td style="text-align:right;color:var(--ink2)">$19-28K/mo</td><td style="text-align:right;color:var(--ink2)">$156-234K/mo</td></tr>
+    <tr><td>+ Connect (Campaign IQ, Tier 3)</td><td style="text-align:right">$70-100</td><td style="text-align:right;color:var(--ink2)">$33-47K/mo</td><td style="text-align:right;color:var(--ink2)">$273-389K/mo</td></tr>
+    <tr><td>+ Echo (Attribution)</td><td style="text-align:right">$50-70</td><td style="text-align:right;color:var(--ink2)">$24-33K/mo</td><td style="text-align:right;color:var(--ink2)">$195-273K/mo</td></tr>
+    <tr style="border-top:2px solid var(--line)"><td style="font-weight:700">Full stack total</td><td class="neg" style="text-align:right;font-weight:700">$160-230</td><td class="neg" style="text-align:right;font-weight:700">$76-109K/mo<br>$907K-1.3M/yr</td><td class="neg" style="text-align:right;font-weight:700">$623-896K/mo<br>$7.5-10.7M/yr</td></tr>
   </table>
   <div class="sub" style="margin-top:10px">$45/screen is the introductory rate. Published full-stack pricing is 3.5-5x higher. As AiOO adds features and the network scales, costs will follow published rates.</div>
   <div class="source">Sources: AiOO Commercial Terms, AiOO Short Intro pricing slides</div>
