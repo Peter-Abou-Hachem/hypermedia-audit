@@ -98,9 +98,8 @@
 <!-- Sticky nav -->
 <nav class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-inner">
-    <a class="nav-dot" href="#s-ceo" style="color:var(--red)">CEO Brief</a>
-    <a class="nav-dot" href="#hero">Overview</a>
     <a class="nav-dot" href="#s-ceo" style="color:var(--red);font-weight:600">CEO Brief</a>
+    <a class="nav-dot" href="#hero">Overview</a>
     <a class="nav-dot" href="#s-platform">Platform</a>
     <a class="nav-dot" href="#s-dependency">Dependencies</a>
     <a class="nav-dot" href="#s-claims">Claims</a>
@@ -112,8 +111,8 @@
     <a class="nav-dot" href="#s-timeline">Timeline</a>
     <a class="nav-dot" href="#s-brands">Brands</a>
     <a class="nav-dot" href="#s-map">Takeover Map</a>
-    <a class="nav-dot" href="#s-recs">Actions</a>
     <a class="nav-dot" href="#s-questions">Questions</a>
+    <a class="nav-dot" href="#s-recs" style="color:var(--red)">Actions</a>
   </div>
 </nav>
 
@@ -334,17 +333,8 @@
       <div class="sub">availability guaranteed</div>
     </div>
   </div>
-  <table>
-    <tr><td><strong>GPU</strong></td><td>512-core NVIDIA Ampere, 16 Tensor Cores</td></tr>
-    <tr><td><strong>CPU</strong></td><td>6-core Arm Cortex-A78AE @ 1.5 GHz</td></tr>
-    <tr><td><strong>RAM</strong></td><td>4GB LPDDR5</td></tr>
-    <tr><td><strong>Storage</strong></td><td>128GB NVMe SSD pre-installed</td></tr>
-    <tr><td><strong>Pre-installed</strong></td><td>JetPack 5.1.1 (Ubuntu + CUDA 12.6 + cuDNN + TensorRT)</td></tr>
-    <tr><td><strong>NOT pre-installed</strong></td><td>No AI application software. No AiOO software. No Seeed software. Blank canvas.</td></tr>
-    <tr><td><strong>Proven in DOOH</strong></td><td>Quividi (global #1 audience measurement) runs on same Jetson platform</td></tr>
-  </table>
   <div class="callout callout-green" style="margin-top:14px">
-    <strong style="color:var(--green)">Bottom line:</strong> AiOO's edge software is <strong>custom code deployed on a standard $500 Linux box</strong>. It is not firmware. It is not proprietary hardware. Hypermedia owns all 472 devices. Any qualified CV/ML team can deploy replacement inference pipelines on these exact devices — using the same NVIDIA tools (CUDA, TensorRT, DeepStream) that AiOO uses. The "Layer 1" rebuild is a software deployment, not a hardware replacement.
+    <strong style="color:var(--green)">Bottom line:</strong> AiOO's edge software is custom code on a <strong>standard $500 Linux box</strong>. Not firmware. Not proprietary. Hypermedia owns all 472 devices. Any CV/ML team can deploy replacement software on these exact devices using the same NVIDIA tools AiOO uses. Quividi (global #1 in DOOH audience measurement) runs on the same Jetson platform. The "Layer 1" rebuild is a software deployment, not a hardware replacement.
   </div>
   <div class="source">Sources: <a href="https://www.seeedstudio.com/reComputer-J3010-w-o-power-adapter-p-5631.html" target="_blank" style="color:var(--cyan)">Seeed Studio Product Page →</a> · <a href="https://airtable.com/apprKDU8VKyr7sHaB/shro16dqZHKfhXFVx" target="_blank" style="color:var(--cyan)">HM Hardware Asset Register →</a> · NVIDIA JetPack SDK docs · Quividi deployment documentation</div>
 </div>
@@ -692,15 +682,15 @@
 <div class="g g2">
   <div class="c c-red">
     <span class="lbl" style="color:var(--red)">Risk 1 · Edge Software Dependency</span>
-    <h3>Can the sensor hardware function without AiOO's software?</h3>
-    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">If AiOO installs proprietary edge software that locks the sensor output, the devices cannot produce audience data without their platform running. This would require a full edge CV rebuild — adding 4-8 weeks and requiring a specialized computer vision engineer.</p>
-    <div class="sub" style="color:var(--red)">Status: Pending confirmation from Hypermedia technical team</div>
+    <h3>Edge software dependency</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">AiOO's software runs on standard NVIDIA Jetson hardware owned by Hypermedia. A full edge CV rebuild is required — but this is a software deployment on commodity hardware, not a hardware replacement.</p>
+    <div class="sub" style="color:var(--green)">Status: RESOLVED — hardware confirmed as standard Jetson Orin Nano. No proprietary lock-in.</div>
   </div>
   <div class="c c-red">
     <span class="lbl" style="color:var(--red)">Risk 2 · Data Portability</span>
-    <h3>Where does historical campaign and audience data live?</h3>
-    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">If all data is stored on AiOO's cloud infrastructure and there is no contractual obligation to provide data export, Hypermedia risks losing all historical benchmarks, campaign performance records, and audience analytics. This weakens brand renewal conversations.</p>
-    <div class="sub" style="color:var(--red)">Status: Pending confirmation</div>
+    <h3>Data portability</h3>
+    <p style="color:var(--ink2);font-size:13px;line-height:1.7;margin-top:8px">All audience data is on AiOO's AWS. However, historical campaign data is accessible via Campaign IQ and can be extracted. A data migration plan is required during transition.</p>
+    <div class="sub" style="color:var(--orange)">Status: MANAGEABLE — historical data extractable. Migration plan needed.</div>
   </div>
   <div class="c c-orange">
     <span class="lbl" style="color:var(--orange)">Risk 3 · Patent Claim</span>
@@ -721,6 +711,13 @@
 <div class="sec fade-in" id="s-financial" style="position:relative"><div class="sec-num">07</div>
 <div class="sec-label" style="color:var(--red)">07 · Financial Reality</div>
 <h2>Where the money goes.<br><span style="color:var(--ink3)">And how much Hypermedia is leaving on the table.</span></h2>
+
+<!-- PAYBACK — FIRST THING IN THIS SECTION -->
+<div class="c glow-green" style="text-align:center;padding:36px;border:1px solid rgba(105,219,124,0.25);margin-bottom:20px">
+  <span class="lbl" style="color:var(--green);font-size:11px;letter-spacing:0.2em">Investment Payback Period</span>
+  <div style="font-size:clamp(52px,10vw,88px);font-weight:800;letter-spacing:-0.04em;color:var(--green);line-height:1;margin:12px 0">5-8 weeks</div>
+  <p style="color:var(--ink2);font-size:16px;margin-top:12px;line-height:1.7;max-width:600px;margin-left:auto;margin-right:auto">A $150-250K platform investment pays for itself in <strong style="color:var(--ink)">5-8 weeks</strong> against the $1.8M/year currently flowing to AiOO under the COFREE model. From that point forward, every dollar of screen revenue stays with Hypermedia.</p>
+</div>
 
 <!-- License costs at scale -->
 <h3 style="margin-top:24px;margin-bottom:14px">AiOO License Costs at Scale</h3>
@@ -797,19 +794,10 @@
   </div>
 </div>
 
-<!-- The audience segment math -->
+<!-- Audience segments — simplified -->
 <div class="c" style="margin-top:14px">
-  <span class="lbl" style="color:var(--orange)">Audience Segments — 50/50 Split in Detail</span>
-  <p style="color:var(--ink2);font-size:14px;line-height:1.7;margin-bottom:12px">AiOO prices audience segment data as a separate revenue stream, sold independently to brands and agencies. AiOO takes 50% of the CPM.</p>
-  <table>
-    <tr><th>Segment Category</th><th style="text-align:right">CPM Range</th><th style="text-align:right">AiOO Takes (50%)</th><th style="text-align:right">HM Keeps (50%)</th></tr>
-    <tr><td>Standard Demographics</td><td style="text-align:right">$1.50-$3.00</td><td class="neg" style="text-align:right">$0.75-$1.50</td><td style="text-align:right">$0.75-$1.50</td></tr>
-    <tr><td>Behavioural Segments</td><td style="text-align:right">$3.00-$6.00</td><td class="neg" style="text-align:right">$1.50-$3.00</td><td style="text-align:right">$1.50-$3.00</td></tr>
-    <tr><td>Intent & Journey</td><td style="text-align:right">$5.00-$10.00</td><td class="neg" style="text-align:right">$2.50-$5.00</td><td style="text-align:right">$2.50-$5.00</td></tr>
-    <tr><td>Retailer 1P Enriched</td><td style="text-align:right">$8.00-$15.00</td><td class="neg" style="text-align:right">$4.00-$7.50</td><td style="text-align:right">$4.00-$7.50</td></tr>
-    <tr><td>Custom & Lookalike</td><td style="text-align:right">$12.00-$20.00</td><td class="neg" style="text-align:right">$6.00-$10.00</td><td style="text-align:right">$6.00-$10.00</td></tr>
-  </table>
-  <div class="sub" style="margin-top:8px">Additionally, AiOO sells an "Audience Planner" product directly to brands at $700-$1,500/brand/month — revenue Hypermedia does not participate in, despite the data originating from Hypermedia's screens and stores.</div>
+  <span class="lbl" style="color:var(--orange)">Audience Data Revenue</span>
+  <p style="color:var(--ink);font-size:15px;line-height:1.7"><strong style="color:var(--red)">AiOO takes 50% of all audience segment revenue</strong> ($1.50-$20.00 CPM range across 5 segment categories). Additionally, AiOO sells an "Audience Planner" product directly to brands at $700-$1,500/brand/month — revenue Hypermedia does not participate in, despite the data originating from Hypermedia's screens and stores.</p>
   <div class="source">Source: AiOO GTM, "Audience Segment Pricing" slide</div>
 </div>
 
@@ -817,12 +805,6 @@
   <strong style="color:var(--red)">The core issue:</strong> Hypermedia's audience data — generated from Hypermedia's screens, in Hypermedia's retail partners' stores, from Hypermedia's brand campaigns — is being monetized by AiOO at a 50-60% take rate. At scale, this means <strong>millions of dollars per year in revenue generated from Hypermedia's infrastructure and relationships</strong>, with the majority flowing to the technology layer rather than the operating business.
 </div>
 
-<!-- Payback — the close-the-room number -->
-<div class="c glow-green fade-in" style="margin-top:20px;text-align:center;padding:36px;border:1px solid rgba(105,219,124,0.25)">
-  <span class="lbl" style="color:var(--green);font-size:11px;letter-spacing:0.2em">Investment Payback Period</span>
-  <div style="font-size:clamp(52px,10vw,88px);font-weight:800;letter-spacing:-0.04em;color:var(--green);line-height:1;margin:12px 0">5-8 weeks</div>
-  <p style="color:var(--ink2);font-size:16px;margin-top:12px;line-height:1.7;max-width:600px;margin-left:auto;margin-right:auto">A $150-250K platform investment pays for itself in <strong style="color:var(--ink)">5-8 weeks</strong> against the $1.8M/year currently flowing to AiOO under the COFREE model. From that point forward, every dollar of screen revenue stays with Hypermedia.</p>
-</div>
 </div>
 
 <!-- ══ SECTION 8 ══ -->
